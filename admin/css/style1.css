@@ -1,0 +1,145 @@
+/* menu */
+/* Phần menu đầu trang */
+.menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu-logo img {
+    width: 77px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.menu-nav {
+    margin-left: auto;
+}
+
+.menu-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu-nav li {
+    margin: 0 10px;
+}
+
+.menu-nav a, .intro a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.menu-nav a:hover {
+    color: #d82f8b;
+}
+
+/* Phần dropdown menu */
+nav .dropdown:hover .submenu {
+    display: block;
+}
+
+nav .submenu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+    margin-top: 4px;
+}
+
+nav .submenu li {
+    margin: 0;
+    padding: 0;
+}
+
+nav .submenu li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Phần biểu tượng và hình ảnh */
+.svg {
+    color: #d82f8b;
+    padding-left: 10px;
+    border-left: 1px solid #000;
+    margin: 0 10px 0 18px;
+}
+
+.intro > a {
+    margin-left: -9px;
+    color: #cb2580;
+}
+
+.logo-icon a img {
+    width: 25px;
+    height: 25px;
+    border-radius: 30px;
+    border: 1px solid gray;
+    padding: 10px;
+    object-fit: contain;
+}
+/* end menu */
+.container-add {
+    display: flex;
+    width: 60%;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.avatar-section-add {
+    flex: 0.5;
+    padding-right: 20px;
+}
+
+.avatar-content-add {
+    display: flex;
+    align-items: center;
+}
+.avatar-add{
+    margin: 13px;
+    text-align: center;
+}
+
+.form-section-add {
+    flex: 2.5;
+}
+
+.input-group-add {
+    margin-bottom: 20px;
+}
+.firstname-add{
+    margin-right: 40px;
+}
+.text{
+    margin: 0 0 -45px 40px;
+}
+#firstname,#lasttname,#nameaccount,#address,#phone,#email,#password{
+    width: 41%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
