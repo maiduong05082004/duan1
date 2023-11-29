@@ -34,18 +34,18 @@ $formatted_tong = number_format($tong, 0, ',', '.') . '₫';
     return $formatted_tong;
 }
 
-function insert_bill($name,$email,$address,$tel,$pptt,$ngaydathang,$tongdonhang){
-    $sql="insert into bill( `bill_name`, `bill_address`, `bill_tel`, `bill_email`, `bill_pptt`, `ngaydathang`, `bill_total`) values('$name','$email','$address','$tel','$pptt', '$ngaydathang', '$tongdonhang')";
-    return pdo_execute_return_lastinsertID($sql);
+function insert_bill($name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang) {
+    $sql = "INSERT INTO bill (bill_name, bill_email, bill_address, bill_tel, bill_pptt, ngaydathang, bill_total) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, $name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
+    return pdo_execute_return_lastInsertId($sql, $name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
 }
 
-function insert_cart($user_id,$product_id,$product_name,$product_image,$product_price,$product_quantity,$thanhtien,$idbill){
-    $sql="insert into cart( `user_id`, `product_id`, `product_name`, `product_image`, `product_price`, `product_quantity`, `thanhtien`, `idbill`) values('$user_id','$product_id','$product_name','$product_image', '$product_price', '$product_quantity','$thanhtien','$$idbill')";
-    return pdo_execute($sql);
+function insert_cart($userId, $productId, $productName, $productImg, $price, $quantity, $totalPrice, $billId) {
+    $sql = "INSERT INTO cart (user_id, product_id, product_name, product_img, price, quantity, total_price, bill_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, $userId, $productId, $productName, $productImg, $price, $quantity, $totalPrice, $billId);
 }
-
-function loadone_bill($id){
-    $sql="select * from bill where bill_id=".$id;
+function loadone_bill($idbill){
+    $sql="select * from bill where idbill=".$idbill;
     $bill=pdo_query_one($sql);    
     return $bill;
 }

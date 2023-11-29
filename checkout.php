@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt hàng</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" name="dathangthanhcong">Đặt hàng</button>
 
             </div>
         </div>

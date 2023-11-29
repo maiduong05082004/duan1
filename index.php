@@ -116,24 +116,53 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "checkout.php";
         }
         break;
-        case "billcomfim":
-            if (isset($_POST['btnDatHang']) && ($_POST['btnDatHang'])) {
-                $name=$_POST['name'];
-                $email=$_POST['email'];
-                $address=$_POST['address'];
-                $tel=$_POST['tel'];
-                $pptt=$_POST['pttt'];
-                $ngaydathang=date('h:i:sa d/m/Y');
-                $tongdonhang=tongdonhang();
-                $idbill=insert_bill($name,$email,$address,$tel,$pptt,$ngaydathang,$tongdonhang);
+        // case "billcomfim":
+        //     if (isset($_POST['btnDatHang']) && ($_POST['btnDatHang'])) {
+        //         $name = $_POST['kh_ten'];
+        //         $email = $_POST['kh_email'];
+        //         $address = $_POST['kh_diachi'];
+        //         $tel = $_POST['kh_dienthoai'];
+        //         $pptt = $_POST['pttt'];
+        //         $ngaydathang = date('h:i:sa d/m/Y');
+        //         $tongdonhang = tongdonhang();
+        
+        //         // Thực hiện truy vấn để chèn dữ liệu đơn hàng vào cơ sở dữ liệu
+        //         $idbill = insert_bill($name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
+        //         var_dump($idbill);
+        //         exit;
+        //         // Lặp qua các sản phẩm trong giỏ hàng và chèn chúng vào cơ sở dữ liệu
+        //         foreach ($_SESSION['mycart'] as $productId => $cartItem) {
+        //             insert_cart(
+        //                 $_SESSION['user']['id'],
+        //                 $productId,
+        //                 $cartItem['name'],
+        //                 $cartItem['img'],
+        //                 $cartItem['price'],
+        //                 $cartItem['soluong'],
+        //                 $cartItem['ttien'],
+        //                 $idbill
+        //             );
+        //         }
+        
+        //         // Xóa session sau khi đã xử lý đơn hàng thành công
+        //         $_SESSION = [];
+        
+        //         // Chuyển hướng hoặc hiển thị thông báo thành công
+        //         // hoặc: echo "Đặt hàng thành công!";
+        //         exit;
+        //     }
+        //     include "billcomfim.php";
+        //     break;
+            case "billcomfim":
+                if (isset($_POST['dathangthanhcong']) && ($_POST['dathangthanhcong'])) {
+                    $name=$_POST['kh_ten'];
+                    $address=$_POST['kh_diachi'];
+                    $tel=$_POST['kh_dienthoai'];
+                    $email=$_POST['kh_email'];
+                    $tongdonhang=
                 
-                foreach($_SESSION['mycart'] as $cart){
-                    insert_cart($_SESSION['user']['id'],$cart[0],$cart[2],$cart[3],$cart[4],$cart[5],$idbill);
-                }
-                $_SESSION=[];
-            }
-            $listbill=loadone_bill($idbill);
-            include "billcomfim.php";
+                
+                
             break;
         case "exit":
             session_unset();

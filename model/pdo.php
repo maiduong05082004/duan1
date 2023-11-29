@@ -26,7 +26,8 @@ function pdo_execute($sql){
     finally{
         unset($conn);
     }
-}function pdo_execute_return_lastinsertID($sql){
+}
+function pdo_execute_return_lastInsertId($sql){
     // echo $sql;
     $sql_args=array_slice(func_get_args(),1);
     try{
