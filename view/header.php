@@ -13,7 +13,7 @@ $dsdm = loadall_genre();
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/icons.min.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -119,7 +119,7 @@ $dsdm = loadall_genre();
                         <div class="same-style cart-wrap">
                             <button class="icon-cart">
                                 <i class="pe-7s-shopbag"></i>
-                                <span class="count-style">02</span>
+                                <span class="count-style">07</span>
                             </button>
 
                             <div class="shopping-cart-content">
@@ -156,8 +156,8 @@ $dsdm = loadall_genre();
                                     <h4>Total : <span class="shop-total">$260.00</span></h4>
                                 </div>
                                 <div class="shopping-cart-btn btn-hover text-center">
-                                    <a class="default-btn" href="index.php?act=cart">view cart</a>
-                                    <a class="default-btn" href="checkout.html">checkout</a>
+                                    <a class="default-btn" href="index.php?act=addtocart">view cart</a>
+                                    <a class="default-btn" href="index.php?act=bill">checkout</a>
                                 </div>
                             </div>
                         </div>

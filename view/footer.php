@@ -3,6 +3,7 @@
 </div>
 </div>
 <!-- Phần Banner thứ 2 -->
+<div class="none">
 <section class="banner02" style="background-color: #eae2d8;">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -161,6 +162,7 @@
         </div>
     </div>
 </footer>
+</div>
 <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
 <script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
 <script src="assets/js/vendor/jquery-migrate-v3.3.2.min.js"></script>

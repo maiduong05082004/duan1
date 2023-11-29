@@ -1,14 +1,9 @@
 <?php
-ob_start();
-include "view/header.php";
-include "model/Sanpham.php";
-include "model/taikhoan.php";
-$spnew = loadall_sanpham_home();
-include "view/slide.php";
+include "view/controllers/user.php";
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = array();
 }
-$isAddToCartPage = isset($_GET['act']) && $_GET['act'] == 'addtocart';
+$isAddToCartPage = isset($_GET['act']) && ($_GET['act'] == 'addtocart' || $_GET['act'] == 'bill');
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
@@ -79,16 +74,29 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "addtocart":
             if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
-                $id=$_POST['id'];
-                $name=$_POST['name'];
-                $img=$_POST['img'];
-                $price=$_POST['price'];
+                $id = $_POST['id'];
+                $name = $_POST['name'];
+                $img = $_POST['img'];
+                $price = $_POST['price'];
                 $cleaned_price = str_replace(array('.', '₫'), '', $price);
-                $number = intval($cleaned_price);
-                $soluong=$_POST['quantity'];
-                $ttien=$soluong*$number;
-                $spadd=[$id,$name,$img,$number,$soluong,$ttien];
-                array_push($_SESSION['mycart'],$spadd);
+                $priceNumber = intval($cleaned_price);
+                $quantity = $_POST['quantity'];
+        
+                // Check if the product is already in the cart
+                if (isset($_SESSION['mycart'][$id])) {
+                    // If it is, update the quantity
+                    $_SESSION['mycart'][$id]['soluong'] += $quantity;
+                    $_SESSION['mycart'][$id]['ttien'] = $_SESSION['mycart'][$id]['soluong'] * $priceNumber;
+                } else {
+                    // If it's not, add it as a new entry
+                    $_SESSION['mycart'][$id] = [
+                        'name' => $name,
+                        'img' => $img,
+                        'price' => $priceNumber,
+                        'soluong' => $quantity,
+                        'ttien' => $quantity * $priceNumber
+                    ];
+                }
             }
             include "addtocart.php";
             break;
@@ -101,8 +109,32 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             header('location:index.php?act=addtocart');
         break;
         case "bill";
-        
+        if (empty($_SESSION['mycart'])) {
+            // Giỏ hàng trống
+            echo "<script>alert('Giỏ hàng trống, vui lòng chọn sản phẩm!'); window.location = 'index.php?act=addtocart';</script>";
+        } else {
+            include "checkout.php";
+        }
         break;
+        case "billcomfim":
+            if (isset($_POST['btnDatHang']) && ($_POST['btnDatHang'])) {
+                $name=$_POST['name'];
+                $email=$_POST['email'];
+                $address=$_POST['address'];
+                $tel=$_POST['tel'];
+                $pptt=$_POST['pttt'];
+                $ngaydathang=date('h:i:sa d/m/Y');
+                $tongdonhang=tongdonhang();
+                $idbill=insert_bill($name,$email,$address,$tel,$pptt,$ngaydathang,$tongdonhang);
+                
+                foreach($_SESSION['mycart'] as $cart){
+                    insert_cart($_SESSION['user']['id'],$cart[0],$cart[2],$cart[3],$cart[4],$cart[5],$idbill);
+                }
+                $_SESSION=[];
+            }
+            $listbill=loadone_bill($idbill);
+            include "billcomfim.php";
+            break;
         case "exit":
             session_unset();
             header('location:index.php?act=sanpham');

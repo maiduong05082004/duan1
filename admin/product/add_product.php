@@ -2,7 +2,6 @@
     <h1>Thêm hàng hóa</h1>
     <div class="row2 form_content ">
         <form action="index.php?act=addsp" method="POST" enctype="multipart/form-data">
-
             <div class="container-add">
                 <div class="form-section-add">
                     <div class="input-group-add-2">
@@ -30,7 +29,7 @@
                             <div class="email">mô tả</div>
                             <textarea id="phone" name="mota" rows="5" placeholder="nhập mô tả sản phẩm"></textarea>
                         </div>
-                        <div class="right-box" style="margin-bottom: 42px; ">
+                        <div class="right-box" style="margin-bottom: 18px; ">
                             <div class="phone">hình</div>
                             <input type="file" id="phone" name="hinh">
                             <div class="row2 mb10 form_content_container">

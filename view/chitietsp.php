@@ -3,9 +3,9 @@
         <div class="breadcrumb-content text-center">
             <ul>
                 <li>
-                    <a href="index.php ">Home</a>
+                    <a href="index.php ">Trang chủ</a>
                 </li>
-                <li class="active">Shop Details </li>
+                <li class="active">Chi tiết sản phẩm</li>
             </ul>
         </div>
     </div>
@@ -57,12 +57,11 @@
                         <input class="cart-plus-minus-box" type="number" name="quantity" value="1" min="1">
                         </div>
                         <div class="pro-details-cart btn-hover">
-                        <a href="#" style="line-height: 0;padding:0">
+                        <a href="#" style="line-height: 0;padding:0;margin-left: 20px;">
                             <input type="submit" name="addtocart" id="add-to-cart-form" value="Thêm vào giỏ hàng" style="     background: #ffffff00;     border: none;     color: white;     height: 0px;     margin: 7px 0px 7px 0px;     padding: 21px 19px;     font-weight: bold; ">
                         </a>
                         </div>
                     </div>
-                    
                         <input type="hidden" name="id" value="'.$product_id.'">
                         <input type="hidden" name="name" value="'.$product_name.'">
                         <input type="hidden" name="img" value="'.$product_img.'">
