@@ -24,7 +24,29 @@
             <th>Thao tác</th>
           </tr>
           <?php
-add();
+$tong = 0;
+foreach ($_SESSION['mycart'] as $id => $item) {
+    $hinh = "upload/" . $item['img'];
+    $ttien = $item['price'] * $item['soluong'];
+    $tong += $ttien;
+    $xoasp = '<a href="index.php?act=delcart&idcart=' . $id . '"><input type="button" value="Xóa"></a>';
+    $formatted_price = number_format($item['price'], 0, ',', '.') . '₫';
+    $formatted_total = number_format($ttien, 0, ',', '.') . '₫';
+    echo '<tr>
+            <td><img src="' . $hinh . '" alt="" height="80px"></td>
+            <td>' . $item['name'] . '</td>
+            <td>' . $formatted_price . '</td>
+            <td>' . $item['soluong'] . '</td>
+            <td>' . $formatted_total . '</td>
+            <td>' . $xoasp . '</td>
+          </tr>';
+}
+$formatted_tong = number_format($tong, 0, ',', '.') . '₫';
+echo '
+<tr>
+    <td colspan="4"><h3>Tổng đơn hàng</h3></td>
+    <td><h3>' . $formatted_tong . '</h3></td>
+</tr>';
 ?>
 
         </table>

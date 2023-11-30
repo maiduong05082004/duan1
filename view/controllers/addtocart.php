@@ -24,30 +24,37 @@ echo '
     <td><h3>' . $formatted_tong . '</h3></td>
 </tr>';
 }
-function tongdonhang(){
+function tongdonhang() {
     $tong = 0;
-foreach ($_SESSION['mycart'] as $id => $item) {
-    $ttien = $item['price'] * $item['soluong'];
-    $tong += $ttien;
-}
-$formatted_tong = number_format($tong, 0, ',', '.') . '₫';
-    return $formatted_tong;
+    foreach ($_SESSION['mycart'] as $id => $item) {
+        $ttien = $item['price'] * $item['soluong'];
+        $tong += $ttien;
+    }
+    // Giá trị số để lưu vào cơ sở dữ liệu
+    $total_numeric = $tong;
+    // Chuỗi đã được định dạng để hiển thị
+    $formatted_tong = number_format($tong, 0, ',', '.') . '₫';
+
+    // Trả về một mảng chứa cả giá trị số và chuỗi định dạng
+    return ['numeric' => $total_numeric, 'formatted' => $formatted_tong];
 }
 
-function insert_bill($name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang) {
-    $sql = "INSERT INTO bill (bill_name, bill_email, bill_address, bill_tel, bill_pptt, ngaydathang, bill_total) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    pdo_execute($sql, $name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
-    return pdo_execute_return_lastInsertId($sql, $name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
+
+function insert_bill($name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang) {
+    $sql = "INSERT INTO bill (bill_name, bill_email, bill_address, bill_tel, bill_pttt, ngaydathang, bill_total) VALUES  ( '$name','$email', '$address', '$tel',' $pttt',' $ngaydathang', '$tongdonhang')";
+    pdo_execute($sql);
+    return pdo_execute_return_lastInsertId($sql);
 }
 
-function insert_cart($userId, $productId, $productName, $productImg, $price, $quantity, $totalPrice, $billId) {
-    $sql = "INSERT INTO cart (user_id, product_id, product_name, product_img, price, quantity, total_price, bill_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    pdo_execute($sql, $userId, $productId, $productName, $productImg, $price, $quantity, $totalPrice, $billId);
+function insert_cart($userId, $productId, $productName, $productImage, $price, $quantity, $totalPrice, $billId) {
+    $sql = "INSERT INTO cart (user_id, product_id, product_name, product_image, product_price, product_quantity, thanhtien, idbill) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    pdo_execute($sql, $userId, $productId, $productName, $productImage, $price, $quantity, $totalPrice, $billId);
 }
+
 function loadone_bill($idbill){
-    $sql="select * from bill where idbill=".$idbill;
-    $bill=pdo_query_one($sql);    
-    return $bill;
+    $sql = "SELECT * FROM bill WHERE idbill = " . $idbill;
+    $listbill=pdo_query_one($sql);    
+    return $listbill;
 }
 
 ?>

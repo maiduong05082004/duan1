@@ -1,4 +1,4 @@
-<?php
+<?php   
 ob_start();
 include "view/header.php";
 include "model/Sanpham.php";

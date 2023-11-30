@@ -70,8 +70,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             include "view/taikhoan/login.php";
             break;
-            include "view/cart.php";
-            break;
         case "addtocart":
             if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
                 $id = $_POST['id'];
@@ -108,7 +106,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             header('location:index.php?act=addtocart');
         break;
-        case "bill";
+        case "bill":
         if (empty($_SESSION['mycart'])) {
             // Giỏ hàng trống
             echo "<script>alert('Giỏ hàng trống, vui lòng chọn sản phẩm!'); window.location = 'index.php?act=addtocart';</script>";
@@ -116,7 +114,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "checkout.php";
         }
         break;
-        // case "billcomfim":
+        // case "billcomfim1":
         //     if (isset($_POST['btnDatHang']) && ($_POST['btnDatHang'])) {
         //         $name = $_POST['kh_ten'];
         //         $email = $_POST['kh_email'];
@@ -152,18 +150,75 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         //         exit;
         //     }
         //     include "billcomfim.php";
-        //     break;
-            case "billcomfim":
-                if (isset($_POST['dathangthanhcong']) && ($_POST['dathangthanhcong'])) {
-                    $name=$_POST['kh_ten'];
-                    $address=$_POST['kh_diachi'];
-                    $tel=$_POST['kh_dienthoai'];
-                    $email=$_POST['kh_email'];
-                    $tongdonhang=
-                
-                
-                
-            break;
+            // break;
+            // case "billcomfim2":
+            //     if (isset($_POST['dathangthanhcong']) && ($_POST['dathangthanhcong'])) {
+            //         $name=$_POST['kh_ten'];
+            //         $email=$_POST['kh_email'];
+            //         $address=$_POST['kh_diachi'];
+            //         $tel=$_POST['kh_dienthoai'];
+            //         $pttt=$_POST['pttt'];
+            //         $ngaydathang=date("h:i:s a d-m-y");
+            //         $tongdonhang=tonghoadon();
+            //         $idbill = insert_bill($name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
+
+            //         foreach ($_SESSION['mycart'] as $productId => $cartItem) {
+            //             insert_cart(
+            //                 $_SESSION['user']['id'],
+            //                 $productId,
+            //                 $cartItem['name'],
+            //                 $cartItem['img'],
+            //                 $cartItem['price'],
+            //                 $cartItem['soluong'],
+            //                 $cartItem['ttien'],
+            //                 $idbill
+            //             );
+            //         }
+            //     }
+            //     $listbill=loadone_bill($idbill);
+            //     include "billcomfim.php";
+            // break;
+            // Phần này thuộc file index.php
+// Phần này thuộc file index.php
+case "billcomfim":
+    if (isset($_POST['dathangthanhcong'])) {
+        // Tiến hành lấy dữ liệu từ form và gán vào các biến
+        $name = $_POST['kh_ten'];
+        $email = $_POST['kh_email'];
+        $address = $_POST['kh_diachi'];
+        $tel = $_POST['kh_dienthoai'];
+        $pttt = $_POST['pttt'];
+        $ngaydathang = date('Y-m-d H:i:s'); // Định dạng datetime cho SQL
+        $tongdonhang = tongdonhang()['numeric']; // Lấy giá trị số
+   
+        // Chèn thông tin đơn hàng vào cơ sở dữ liệu và lấy ID của đơn hàng mới
+        $idbill = insert_bill($name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang);
+        if (isset($_SESSION['user']['acc_id'])) {
+            foreach ($_SESSION['mycart'] as $productId => $cartItem) {
+                insert_cart(
+                    $_SESSION['user']['acc_id'],
+                    $productId,
+                    $cartItem['name'],
+                    $cartItem['img'],
+                    $cartItem['price'],
+                    $cartItem['soluong'],
+                    $cartItem['ttien'],
+                    $idbill
+                );
+            }
+        } else {
+            // Xử lý khi không tìm thấy user_id (có thể chuyển hướng người dùng về trang đăng nhập, hiển thị thông báo, hoặc thực hiện các hành động khác)
+            echo "Không tìm thấy thông tin đăng nhập!";
+        }
+
+        // Xóa thông tin giỏ hàng từ session sau khi đã xử lý xong đơn hàng
+        // unset($_SESSION['mycart']);
+        $bill = loadone_bill($idbill);
+        include "billcomfim.php";
+
+    }
+    break;
+
         case "exit":
             session_unset();
             header('location:index.php?act=sanpham');
