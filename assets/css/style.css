@@ -101,7 +101,7 @@ h4,
 h5,
 h6 {
   color: #000000;
-  font-family: "Poppins", sans-serif;
+  font-family: "Times New Roman", sans-serif;
   font-weight: 400;
   margin-top: 0;
 }
@@ -112,9 +112,15 @@ p {
   line-height: 24px;
   color: #333;
   margin-bottom: 15px;
+  font-family: "Times New Roman", sans-serif;
+}
+.main-menu ,td{
   font-family: "Poppins", sans-serif;
 }
-
+tr{
+  font-family: "Times New Roman", sans-serif;
+  font-size: 17px;
+}
 h1 {
   font-size: 36px;
   line-height: 42px;
@@ -1451,7 +1457,7 @@ textarea:-ms-input-placeholder {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-input {
+.inpu {
   background: #eceff8;
   border: 2px solid #eceff8;
   height: 45px;
@@ -1461,9 +1467,9 @@ input {
   font-size: 14px;
   color: #333;
   width: 100%;
-}
+} 
 
-select {
+/* select {
   width: 100%;
   background: transparent;
   border: 0px solid #eceff8;
@@ -1471,7 +1477,7 @@ select {
           box-shadow: none;
   font-size: 14px;
   color: #333;
-}
+} */
 
 option {
   background: #fff;
@@ -2505,7 +2511,7 @@ a.default-btn {
   position: absolute;
   text-align: left;
   top: 190%;
-  width: 125px;
+  width: 160px;
   z-index: 220;
   display: none;
 }

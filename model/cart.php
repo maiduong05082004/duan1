@@ -6,6 +6,10 @@ function addcart() {
     $sql = "INSERT INTO cart (user_id, product_id, quantity, added_on) VALUES (?, ?, ?, NOW())";
     pdo_execute($sql,[$user_id, $product_id, $quantity]);
 }
-
+function loadall_bill($iduser){
+    $sql="select * from bill where acc_id=".$iduser;
+    $listbill=pdo_query($sql);    
+    return $listbill;
+}
 
 ?>

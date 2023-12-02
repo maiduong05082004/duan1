@@ -5,7 +5,7 @@
         <form action="index.php?act=listsp" method="POST" enctype="multipart/form-data">
             <div class="row2 mb10 formds_loai">
 
-                <input type="text" name="kyw" class="search-input" style=" margin: 0 0 17px 1023px; ">
+                <input type="text" name="kyw" class="search-input" style=" margin: 0 0 10px 1028px; ">
                 <select name="iddm" class="search-input">
                     <option value="0">tất cả</option>
                     <?php

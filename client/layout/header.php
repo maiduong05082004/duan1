@@ -9,24 +9,24 @@ $dsdm = loadall_genre();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Flone</title>
+    <title>LAPDTECH</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/lapto.png">
     <link rel="stylesheet"  href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/icons.min.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="./taikhoan/style.css"> 
+    <link rel="stylesheet" href="client/taikhoan/css/style.css"> 
 </head>
 <body>
     <header class="header-area header-padding-1 sticky-bar header-res-padding clearfix">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-2 col-lg-2 col-md-6 col-4">
-                    <div class="logo">
+                    <div class="logo" style="margin: 10px;">
                         <a href="index.php">
-                            <img alt="" src="assets/img/logo/logo.png">
+                            <img alt="" src="assets/img/logo/laptech.png" style="     width: 100px;     height: 68px; ">
                         </a>
                     </div>
                 </div>
@@ -88,8 +88,8 @@ $dsdm = loadall_genre();
                                     <ul>
                                         <li><a href="index.php?act=login"><?= $acc_user ?></a></li>
                                         <li><a href="index.php?act=quenmk">Quên mật khẩu</a></li>
-                                        <li><a href="index.php?act=edit_taikhoan&id=<?= $acc_id ?>">Cập nhật tài khoản</a></li>
-                                        <li><a href="#">Lịch sử giao dịch</a></li>
+                                        <li><a href="index.php?act=accinfo">Thông tin cá nhân</a></li>
+                                        <li><a href="#">Đơn hàng của tôi</a></li>
                                         <?php if ($role == 1) { ?>
                                             <li><a href="admin/index.php?act=thongke">Quản lý admin</a></li>
                                         <?php } ?>
@@ -116,51 +116,79 @@ $dsdm = loadall_genre();
                         <div class="same-style header-wishlist">
                             <a href="wishlist.html"><i class="pe-7s-like"></i></a>
                         </div>
-                        <div class="same-style cart-wrap">
-                            <button class="icon-cart">
-                                <i class="pe-7s-shopbag"></i>
-                                <span class="count-style">07</span>
-                            </button>
+                        <?php
+                        $soluongtong = 0;
 
-                            <div class="shopping-cart-content">
-                                <ul>
-                                    <li class="single-shopping-cart">
+                        if (!empty($_SESSION['mycart'])) {
+                            foreach ($_SESSION['mycart'] as $item) {
+                                $soluongtong += $item['soluong'];
+                            }
+                            echo '<div class="same-style cart-wrap">
+                                    <button class="icon-cart">
+                                        <i class="pe-7s-shopbag"></i>
+                                        <span class="count-style">' . $soluongtong . '</span>
+                                    </button>
+                                    <div class="shopping-cart-content">
+                                        <ul>';
+
+                            $tong = 0;
+                            foreach ($_SESSION['mycart'] as $id => $item) {
+                                $hinh = "upload/" . $item['img'];
+                                $ttien = $item['price'] * $item['soluong'];
+                                $tong += $ttien;
+                                $xoasp = 'index.php?act=delcart&idcart=' . $id;
+                                $formatted_price = number_format($item['price'], 0, ',', '.') . '₫';
+                                $formatted_total = number_format($ttien, 0, ',', '.') . '₫';
+
+                                echo '<li class="single-shopping-cart">
                                         <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="assets/img/cart/cart-1.png"></a>
+                                            <a href="#"><img alt="" src="' . $hinh . '" style="width: 99px; height: 65px;"></a>
                                         </div>
                                         <div class="shopping-cart-title">
-                                            <h4><a href="#">T- Shart & Jeans </a></h4>
-                                            <h6>Qty: 02</h6>
-                                            <span>$260.00</span>
+                                            <h4><a href="#">' . $item['name'] . '</a></h4>
+                                            <h6>Số lượng: ' . $item['soluong'] . '</h6>
+                                            <span>' . $formatted_price . '</span>
                                         </div>
                                         <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fa fa-times-circle"></i></a>
+                                            <a href="' . $xoasp . '"><i class="fa fa-times-circle"></i></a>
                                         </div>
-                                    </li>
-                                    <li class="single-shopping-cart">
-                                        <div class="shopping-cart-img">
-                                            <a href="#"><img alt="" src="assets/img/cart/cart-2.png"></a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="#">T- Shart & Jeans </a></h4>
-                                            <h6>Qty: 02</h6>
-                                            <span>$260.00</span>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="shopping-cart-total">
-                                    <h4>Shipping : <span>$20.00</span></h4>
-                                    <h4>Total : <span class="shop-total">$260.00</span></h4>
-                                </div>
-                                <div class="shopping-cart-btn btn-hover text-center">
-                                    <a class="default-btn" href="index.php?act=addtocart">view cart</a>
-                                    <a class="default-btn" href="index.php?act=bill">checkout</a>
-                                </div>
+                                    </li>';
+                            }
+                            $formatted_tong = number_format($tong, 0, ',', '.') . '₫';
+                            echo '</ul>
+                                    <div class="shopping-cart-total">
+                                        <h4>Số lượng : <span>' . $soluongtong . '</span></h4>
+                                        <h4>Total : <span class="shop-total">' . $formatted_tong . '</span></h4>
+                                    </div>
+                                    <div class="shopping-cart-btn btn-hover text-center">
+                                        <a class="default-btn" href="index.php?act=addtocart">view cart</a>
+                                        <a class="default-btn" href="index.php?act=bill">checkout</a>
+                                    </div>';
+                        } else {
+                            echo '
+                            
+                    <div class="same-style cart-wrap">
+                        <button class="icon-cart">
+                            <i class="pe-7s-shopbag"></i>
+                            <span class="count-style">0</span>
+                        </button>
+                        <div class="shopping-cart-content">
+                            <ul>
+                            <p class="text-center">Chưa có sản phẩm nào</p>
+                                
+                            </ul>
+                            <div class="shopping-cart-total">
+                                <h4>Shipping : <span>$20.00</span></h4>
+                                <h4>Total : <span class="shop-total">$260.00</span></h4>
+                            </div>
+                            <div class="shopping-cart-btn btn-hover text-center">
+                            <a class="default-btn" href="index.php?act=addtocart">view cart</a>
+                            <a class="default-btn" href="index.php?act=bill">checkout</a>
                             </div>
                         </div>
+                    </div>';}
+                        ?>
+                        
                     </div>
                 </div>
             </div>

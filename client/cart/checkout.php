@@ -77,19 +77,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label for="kh_ten">Họ tên</label>
-                        <input type="text" class="form-control" name="kh_ten" id="kh_ten" value="<?= $name ?>">
+                        <input type="text" class="form-control" name="kh_ten" id="kh_ten" value="<?= $name ?>" required>
                     </div>
                     <div class="col-md-12">
                         <label for="kh_diachi">Địa chỉ</label>
-                        <input type="text" class="form-control" name="kh_diachi" id="kh_diachi" value="<?= $address ?>">
+                        <input type="text" class="form-control" name="kh_diachi" id="kh_diachi" value="<?= $address ?>" required>
                     </div>
                     <div class="col-md-12">
                         <label for="kh_dienthoai">Điện thoại</label>
-                        <input type="text" class="form-control" name="kh_dienthoai" id="kh_dienthoai" value="<?= $email ?>">
+                        <input type="text" class="form-control" name="kh_dienthoai" id="kh_dienthoai" value="<?= $tel ?>" required>
                     </div>
                     <div class="col-md-12">
                         <label for="kh_email">Email</label>
-                        <input type="text" class="form-control" name="kh_email" id="kh_email" value="<?= $tel ?>">
+                        <input type="email" class="form-control" name="kh_email" id="kh_email" value="<?= $email ?>" required>
                     </div>
                 </div>
 

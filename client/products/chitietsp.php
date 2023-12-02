@@ -51,22 +51,22 @@
                             <li>- Very modern style  </li>
                         </ul>
                     </div>
+                    <div>Số lượng sản phẩm còn:'.$product_quantity.'</div>
                     <form action="index.php?act=addtocart" method="post">
-                    <div class="pro-details-quality">
-                        <div class="cart-plus-minus">
-                        <input class="cart-plus-minus-box" type="number" name="quantity" value="1" min="1">
+                        <div class="pro-details-quality">
+                            <div class="cart-plus-minus">
+                            <input class="cart-plus-minus-box" type="number" name="quantity" value="1" min="1" max="'.$product_quantity.'" >
+                            </div>
+                            <div class="pro-details-cart btn-hover">
+                                <a href="#" style="line-height: 0;padding:0;margin-left: 20px;">
+                                    <input type="submit" name="addtocart" id="add-to-cart-form" value="Thêm vào giỏ hàng" style="     background: #ffffff00;     border: none;     color: white;     height: 0px;     margin: 7px 0px 7px 0px;     padding: 21px 19px;     font-weight: bold; ">
+                                </a>
+                            </div>
                         </div>
-                        <div class="pro-details-cart btn-hover">
-                        <a href="#" style="line-height: 0;padding:0;margin-left: 20px;">
-                            <input type="submit" name="addtocart" id="add-to-cart-form" value="Thêm vào giỏ hàng" style="     background: #ffffff00;     border: none;     color: white;     height: 0px;     margin: 7px 0px 7px 0px;     padding: 21px 19px;     font-weight: bold; ">
-                        </a>
-                        </div>
-                    </div>
                         <input type="hidden" name="id" value="'.$product_id.'">
                         <input type="hidden" name="name" value="'.$product_name.'">
                         <input type="hidden" name="img" value="'.$product_img.'">
                         <input type="hidden" name="price" value="'.$product_price.'">
-                        <input type="submit" name="addtocart" id="add-to-cart-form" value="Thêm vào giỏ hàng"  style="display: none;">
                     </form>
 
 
@@ -97,6 +97,7 @@
                     </div>
                 </div>
             </div>';
+            
             ?>
 
         </div>
@@ -258,3 +259,4 @@
 </a>';
 }
 ?>
+</div>

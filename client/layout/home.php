@@ -1,17 +1,17 @@
 <div class="product-area">
     <div class="container">
         <div class="section-title text-center">
-            <h2>DAILY DEALS!</h2>
+            <h2>Mua ngay thôi nào!</h2>
         </div>
         <div class="product-tab-list nav pt-30 pb-55 text-center">
             <a href="#product-1" data-bs-toggle="tab" >
-                <h4>toiosd</h4>
+                <h4>Sản phẩm bán chạy</h4>
             </a>
             <a class="active" href="#product-2" data-bs-toggle="tab">
-                <h4>Best Sellers </h4>
+                <h4> Sản phẩm giảm giá  </h4>
             </a>
             <a href="#product-3" data-bs-toggle="tab">
-                <h4>Sale Items</h4>
+                <h4>Mặt hàng mới</h4>
             </a>
         </div>
         <div class="tab-content jump">
@@ -19,6 +19,23 @@
                 <div class="row">
                 </div>
             </div>
+                <form action="index.php?act=listsp" method="POST" enctype="multipart/form-data">
+                    <div class="row2 mb10 formds_loai">
+
+                        <input type="text" name="kyw" class="search-input" placeholder="Nhập sản phẩm cần tìm..." style=" margin: 0 0 17px 774px; ">
+                        <select name="iddm" class="search-input">
+                            <option value="0">tất cả</option>
+                            <?php
+                            foreach ($listdanhmuc as $danhmuc) {
+                                extract($danhmuc);
+                                echo ' <option value="' . $genre_id . '">' . $genre_name . '</option>';
+                            }
+                            ?>
+                        </select>
+
+                        <input class="search-btn" type="submit" name="listok" value="Tìm kiếm">
+                </form>
+
             <div class="tab-pane active" id="product-2">
                 <div class="row">
                 <?php
@@ -74,4 +91,10 @@
                     </div>';
                 }
                 ?>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
                     

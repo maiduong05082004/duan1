@@ -55,11 +55,11 @@ echo '
   </div>
 </div>
 
-<div class="row mb bill" style="display: flex;margin: 0 auto;justify-content: center;gap: 30px; ">
-  <a href="index.php?act=bill" style="width: 531px; ">
+<div class="row mb bill" style="display: flex;margin: 0 auto;justify-content: center; ">
+  <a href="index.php?act=bill" style="width: 185px; ">
     <input type="submit" value="ĐỒNG Ý ĐẶT HÀNG" style="border: 1px solid;margin: 20px 0;">
   </a>
-  <a href="index.php?act=delcart" style="border: 1px solid;margin:20px 0;width: 531px;">
-    <input type="button" value="XÓA GIỎ HÀNG" style="width: 529px;margin-left: -14px;">
+  <a href="index.php?act=delcart" style="border: 1px solid;margin:20px 0;width: 185px;">
+    <input type="button" value="XÓA GIỎ HÀNG" style="width: 184px;margin-left: -14px;">
   </a>
 </div>

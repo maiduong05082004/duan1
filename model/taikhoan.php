@@ -9,33 +9,28 @@ function checkemail($email){
     $sp=pdo_query_one($sql);    
     return $sp;
 }
-function update_capnhat_tk($id,$username,$password,$email,$ten,$address,$tel){
-$sql="update taikhoan set username='".$username."', password='".$password."',email='".$email."',ten='".$ten."',address='".$address."',tel='".$tel."' where id=".$id;
+function update_capnhat_tk($id,$name,$email,$address,$tel){
+$sql="update account set acc_name='".$name."',acc_email='".$email."',acc_address='".$address."',acc_tel='".$tel."' where acc_id=".$id;
     pdo_execute($sql);  
 }
+
 function loadall_taikhoan(){
-    $sql="SELECT * FROM taikhoan order by id desc";
+    $sql="SELECT * FROM account order by acc_id desc";
     $listtaikhoan=pdo_query($sql);
     return  $listtaikhoan;
 }
-function insert_account_user($user, $password, $email, $tel, $address, $role)
+function insert_account_user($user, $password, $email,$accname, $tel, $address, $role)
 {
-    $sql = "INSERT INTO taikhoan (user,pass,email,address,tel,role) VALUES ('$user','$password','$email','$tel','$address','$role')";
+    $sql = "INSERT INTO account (acc_user,acc_pass,acc_email,acc_name,acc_address,acc_tel,role) VALUES ('$user','$password','$email','$accname','$address','$tel','$role')";
     pdo_execute ($sql);
 }
-// function checkuser($user,$pass){
-//     $sql="select *from account where (acc_user='".$user."' OR acc_tel='".$user."') AND  acc_password='".$pass."'";
-//     $sp=pdo_query_one($sql);
-//     return $sp;
-// }
 function checkuser($user, $password) {
     $sql = "SELECT * FROM account WHERE acc_user='".$user."'  AND acc_pass = '".$password."'";
     $acc=pdo_query_one($sql);
     return $acc;
 }
-function checkuser1($username,$password){
-    $sql="select * from account where acc_user=? and acc_pass=?";
-    return pdo_query_one($sql,$username,$password);
-    
+function check_account_user($id){
+    $sql = "SELECT * FROM account WHERE acc_id=$id";
+    return pdo_query_one($sql);
 }
 ?>

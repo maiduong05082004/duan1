@@ -233,8 +233,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
     }
 } else {
-    include "home.php";
+    include "layout/home.php";
 }
 
-include "footer.php";
+include "layout/footer.php";
 ?>  

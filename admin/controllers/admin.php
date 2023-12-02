@@ -1,6 +1,6 @@
 <?php
-include "hearder.php";
-include "slide.php";
+include "layout/hearder.php";
+include "layout/slide.php";
 include "Model/pdo.php";
 include "Model/account.php";
 include "Model/product.php";

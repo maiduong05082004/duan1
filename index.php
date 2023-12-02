@@ -1,9 +1,8 @@
 <?php
-include "view/controllers/user.php";
+include "client/controllers/user.php";
 if (!isset($_SESSION['mycart'])) {
     $_SESSION['mycart'] = array();
 }
-$isAddToCartPage = isset($_GET['act']) && ($_GET['act'] == 'addtocart' || $_GET['act'] == 'bill');
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
@@ -12,9 +11,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $onesp = loadone_sanpham($_GET['idsp']);
                 $sp_cung_loai = load_sanpham_cungloai($_GET['idsp'], $onesp['genre_id']);
                 // $binhluan = load_binhluan($_GET['idsp']);
-                include "view/chitietsp.php";
+                include "client/products/chitietsp.php";
             } else {
-                include "view/home.php";
+                include "client/layout/home.php";
             }
 
             break;
@@ -32,28 +31,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             $dssp = loadall_sanpham($kyw, $iddm);
             $tendm = load_ten_dm($iddm);
-            include 'view/home.php';
-            break;
-        case "register":
-            if (isset($_POST['addaccount']) && ($_POST['addaccount'])) {
-
-                $user = $_POST['nameaccount'] ?? '';
-                $password = $_POST['password'] ?? '';
-                $email = $_POST['email'] ?? '';
-                $role = $_POST['role'];
-                $tel = $_POST['tel'];
-                $address = $_POST['address'];
-                if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$/", $password)) {
-                    $thongbao = "Mật khẩu phải bao gồm ít nhất 8 ký tự, bao gồm chữ thường, chữ hoa, số và ký tự đặc biệt.";
-                } elseif (empty($user) || empty($password) || empty($email)) {
-                    $thongbao = "Vui lòng nhập đủ thông tin bắt buộc.";
-                } else {
-
-                    insert_account_user($user, $password, $email, $tel, $address, $role);
-                    $thongbao = "thêm tài khoản thành công";
-                }
-            }
-            include "view/taikhoan/register.php";
+            include 'client/layout/home.php';
             break;
         case "login":
             if (isset($_POST['loginaccount']) && ($_POST['loginaccount'])) {
@@ -68,8 +46,45 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $thongbao = "Tài khoản hoặc mật khẩu không đúng!";
                 }
             }
-            include "view/taikhoan/login.php";
+            include "client/taikhoan/login.php";
             break;
+            case "register":
+                if (isset($_POST['addaccount']) && ($_POST['addaccount'])) {
+                    $user = $_POST['nam'] ?? '';
+                    $password = $_POST['password'] ?? '';
+                    $confirm_password = $_POST['confirm_password'] ?? '';
+                    $email = $_POST['email'] ?? '';
+                    $accname = $_POST['accname'] ?? '';
+                    $role = $_POST['role'] ?? '2'; // 2 có thể là giá trị mặc định cho người dùng
+                    $tel = $_POST['tel'] ?? '';
+                    $address = $_POST['address'] ?? '';
+                    if ($password !== $confirm_password) {
+                        $thongbao = "Mật khẩu và mật khẩu xác nhận không khớp.";
+                    } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$/", $password)) {
+                        $thongbao = "Mật khẩu phải bao gồm ít nhất 8 ký tự, bao gồm chữ thường, chữ hoa, số và ký tự đặc biệt.";
+                    } elseif (empty($user) || empty($password) || empty($email)) {
+                        $thongbao = "Vui lòng nhập đủ thông tin bắt buộc.";
+                    } else {   
+                        insert_account_user($user, $password, $email,$accname, $tel, $address, $role);
+                        $thongbao = "Thêm tài khoản thành công.";
+                    }
+                }
+                include "client/taikhoan/register.php";
+                break;
+                case "accinfo":
+                    if (isset($_POST['capnhapuser'])) {
+                        echo $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $address = $_POST['address'];
+                        $tel = $_POST['tel'];
+                        $id = $_SESSION['user'];
+                        $loaduser=check_account_user($id);
+                        update_capnhat_tk($id,$name,$email,$address,$tel);
+                        
+                        header('Location: index.php?act=accinfo');
+                      }
+                    include "client/taikhoan/accinfo.php";
+                break;
         case "addtocart":
             if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
                 $id = $_POST['id'];
@@ -96,7 +111,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     ];
                 }
             }
-            include "addtocart.php";
+            include "client/cart/addtocart.php";
             break;
         case "delcart":
             if(isset($_GET['idcart']))  {
@@ -111,78 +126,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             // Giỏ hàng trống
             echo "<script>alert('Giỏ hàng trống, vui lòng chọn sản phẩm!'); window.location = 'index.php?act=addtocart';</script>";
         } else {
-            include "checkout.php";
+            include "client/cart/checkout.php";
         }
         break;
-        // case "billcomfim1":
-        //     if (isset($_POST['btnDatHang']) && ($_POST['btnDatHang'])) {
-        //         $name = $_POST['kh_ten'];
-        //         $email = $_POST['kh_email'];
-        //         $address = $_POST['kh_diachi'];
-        //         $tel = $_POST['kh_dienthoai'];
-        //         $pptt = $_POST['pttt'];
-        //         $ngaydathang = date('h:i:sa d/m/Y');
-        //         $tongdonhang = tongdonhang();
-        
-        //         // Thực hiện truy vấn để chèn dữ liệu đơn hàng vào cơ sở dữ liệu
-        //         $idbill = insert_bill($name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
-        //         var_dump($idbill);
-        //         exit;
-        //         // Lặp qua các sản phẩm trong giỏ hàng và chèn chúng vào cơ sở dữ liệu
-        //         foreach ($_SESSION['mycart'] as $productId => $cartItem) {
-        //             insert_cart(
-        //                 $_SESSION['user']['id'],
-        //                 $productId,
-        //                 $cartItem['name'],
-        //                 $cartItem['img'],
-        //                 $cartItem['price'],
-        //                 $cartItem['soluong'],
-        //                 $cartItem['ttien'],
-        //                 $idbill
-        //             );
-        //         }
-        
-        //         // Xóa session sau khi đã xử lý đơn hàng thành công
-        //         $_SESSION = [];
-        
-        //         // Chuyển hướng hoặc hiển thị thông báo thành công
-        //         // hoặc: echo "Đặt hàng thành công!";
-        //         exit;
-        //     }
-        //     include "billcomfim.php";
-            // break;
-            // case "billcomfim2":
-            //     if (isset($_POST['dathangthanhcong']) && ($_POST['dathangthanhcong'])) {
-            //         $name=$_POST['kh_ten'];
-            //         $email=$_POST['kh_email'];
-            //         $address=$_POST['kh_diachi'];
-            //         $tel=$_POST['kh_dienthoai'];
-            //         $pttt=$_POST['pttt'];
-            //         $ngaydathang=date("h:i:s a d-m-y");
-            //         $tongdonhang=tonghoadon();
-            //         $idbill = insert_bill($name, $email, $address, $tel, $pptt, $ngaydathang, $tongdonhang);
-
-            //         foreach ($_SESSION['mycart'] as $productId => $cartItem) {
-            //             insert_cart(
-            //                 $_SESSION['user']['id'],
-            //                 $productId,
-            //                 $cartItem['name'],
-            //                 $cartItem['img'],
-            //                 $cartItem['price'],
-            //                 $cartItem['soluong'],
-            //                 $cartItem['ttien'],
-            //                 $idbill
-            //             );
-            //         }
-            //     }
-            //     $listbill=loadone_bill($idbill);
-            //     include "billcomfim.php";
-            // break;
-            // Phần này thuộc file index.php
-// Phần này thuộc file index.php
 case "billcomfim":
     if (isset($_POST['dathangthanhcong'])) {
         // Tiến hành lấy dữ liệu từ form và gán vào các biến
+        if(isset($_SESSION['user'])){ $iduser=$_SESSION['user']['acc_id'];}
+        else{ $iduser=0;}
         $name = $_POST['kh_ten'];
         $email = $_POST['kh_email'];
         $address = $_POST['kh_diachi'];
@@ -192,7 +143,7 @@ case "billcomfim":
         $tongdonhang = tongdonhang()['numeric']; // Lấy giá trị số
    
         // Chèn thông tin đơn hàng vào cơ sở dữ liệu và lấy ID của đơn hàng mới
-        $idbill = insert_bill($name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang);
+        $idbill = insert_bill($iduser,$name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang);
         if (isset($_SESSION['user']['acc_id'])) {
             foreach ($_SESSION['mycart'] as $productId => $cartItem) {
                 insert_cart(
@@ -207,31 +158,36 @@ case "billcomfim":
                 );
             }
         } else {
-            // Xử lý khi không tìm thấy user_id (có thể chuyển hướng người dùng về trang đăng nhập, hiển thị thông báo, hoặc thực hiện các hành động khác)
-            echo "Không tìm thấy thông tin đăng nhập!";
+            echo "<h3 class='text-center text-danger'>Tài khoản của khách hàng chưa đăng nhập chúng tôi sẽ gửi hóa đơn thanh toán cho quý khách qua email!</h3>";
         }
-
-        // Xóa thông tin giỏ hàng từ session sau khi đã xử lý xong đơn hàng
-        // unset($_SESSION['mycart']);
+        unset($_SESSION['mycart']);
         $bill = loadone_bill($idbill);
-        include "billcomfim.php";
+        include "client/cart/billcomfim.php";
 
     }
     break;
 
-        case "exit":
-            session_unset();
-            header('location:index.php?act=sanpham');
-            break;
-        default:
-            include "view/home.php";
-            break;
+    case "mybill":
+
+        include "client/taikhoan/mybill.php";
+    break;
+    case "capnhaptaikhoan":
+        
+        break;
+    
+    case "exit":
+        session_unset();
+        header('location:index.php?act=sanpham');
+        break;
+    default:
+        include "client/layout/home.php";
+    break;
     }
 } else {
-    include "view/home.php";
+    include "client/layout/home.php";
 }
 if ($isAddToCartPage) {
     echo '<style>.none { display: none;}</style>';
 }
-include "view/footer.php";
+include "client/layout/footer.php";
 ?>

@@ -40,8 +40,8 @@ function tongdonhang() {
 }
 
 
-function insert_bill($name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang) {
-    $sql = "INSERT INTO bill (bill_name, bill_email, bill_address, bill_tel, bill_pttt, ngaydathang, bill_total) VALUES  ( '$name','$email', '$address', '$tel',' $pttt',' $ngaydathang', '$tongdonhang')";
+function insert_bill($iduser,$name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang) {
+    $sql = "INSERT INTO bill (acc_id,bill_name, bill_email, bill_address, bill_tel, bill_pttt, ngaydathang, bill_total) VALUES  ('$iduser', '$name','$email', '$address', '$tel',' $pttt',' $ngaydathang', '$tongdonhang')";
     pdo_execute($sql);
     return pdo_execute_return_lastInsertId($sql);
 }

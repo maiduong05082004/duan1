@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3pV0fGzddrjrtQb-ufTh5bebIwVDLqh7NJ00zpsr1zT1uoRBaoC3tPyX6r" crossorigin="anonymous">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/img/lapto.png">
 
 <!-- Bootstrap JS and its dependencies (including Popper.js and jQuery) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -25,7 +26,7 @@
         <div class="left-menu">
             <div class="menu-logo">
                 <a href="../index.php?act=home">
-                    <img src="../upload/logo.png" alt="Logo" />
+                    <img src="../assets/img/logo/laptech.png" alt="Logo" />
             </div>
             </a>
         </div>
@@ -41,7 +42,7 @@
                         <li><a href="#">Thống Kê</a></li>
                     </ul>
                 </li>
-                <li><a href="index.php?act=showmovie">Quản lý phim</a></li>
+                <li><a href="index.php?act=showmovie">Quản lý</a></li>
                 <li><a href="index.php?act=thongke">Thống kê</a></li>
             </ul>
         </nav>
