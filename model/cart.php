@@ -11,5 +11,14 @@ function loadall_bill($iduser){
     $listbill=pdo_query($sql);    
     return $listbill;
 }
-
+function loadone_bill_user($iduser){
+    $sql="select * from bill where acc_id=".$iduser." ORDER BY ngaydathang DESC";
+    $listbilluser=pdo_query($sql);    
+    return $listbilluser;
+}
+function loadall_cart_user($idbill){
+    $sql="select * from cart where idbill=".$idbill;
+    $listbill=pdo_query($sql);    
+    return $listbill;
+}
 ?>

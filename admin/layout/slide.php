@@ -32,7 +32,7 @@
 
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="index.php?act=thongkepage" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <span>Doanh số</span>
                 </a>
             </li>
@@ -48,7 +48,7 @@
                     <span>Thêm tài khoản</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?act=showtopping">
+                <a class="nav-link" href="index.php?act=showbill">
                     <span>Quản lý hóa đơn</span></a>
             </li>
             <!-- Nav Item - Tables -->

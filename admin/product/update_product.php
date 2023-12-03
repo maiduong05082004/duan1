@@ -4,7 +4,7 @@ if (is_array($sanpham)) {
 }
 $hinhpart = "../upload/" . $product_img;
 if (is_file($hinhpart)) {
-    $hinh = "<img src='" . $hinhpart . "' height='80'>";
+    $hinh = "<img src='" . $hinhpart . "' height='80' style=' margin: 10px 0 10px 76px; '>";
 } else {
     $hinh = "no poto";
 }
@@ -32,7 +32,7 @@ if (is_file($hinhpart)) {
                         </div>
                         <div class="right-box">
                             <div class="phone">Số lượng</div>
-                            <input type="number" id="phone" name="soluong" value="<?= $product_quantily ?>">
+                            <input type="number" id="phone" name="soluong" value="<?= $product_quantity ?>">
                         </div>
                     </div>
                     <div class="input-group-add-2">
@@ -43,6 +43,7 @@ if (is_file($hinhpart)) {
                         <div class="right-box" style="margin-bottom: 18px; ">
                             <div class="phone">hình</div>
                             <input type="file" id="phone" name="hinh">
+                            <?=$hinh?>
                             <div class="row2 mb10 form_content_container">
                                 <label> Danh Mục </label> <br>
                                 <select name="iddm" id="phone">

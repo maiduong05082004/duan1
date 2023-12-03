@@ -53,7 +53,7 @@
                         </div>
                         <div class="support-content">
                             <h5>Miễn Phí Vận Chuyển</h5>
-                            <p>Miễn phí vận chuyển cho tất cả các đơn hàng</p>
+                            <p>Miễn phí vận chuyển khi mua hàng</p>
                         </div>
                     </div>
                 </div>

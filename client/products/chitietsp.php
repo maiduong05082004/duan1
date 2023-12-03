@@ -37,7 +37,7 @@
                         <div class="pro-details-rating">
                             <i class="fa fa-star-o yellow"></i>
                             <i class="fa fa-star-o yellow"></i>
-                            <i class="fa fqtya-star-o yellow"></i>
+                            <i class="fa fa-star-o yellow"></i>
                             <i class="fa fa-star-o"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
@@ -46,12 +46,11 @@
                     <p>' . $product_content . '</p>
                     <div class="pro-details-list">
                         <ul>
-                            <li>- 0.5 mm Dail</li>
-                            <li>- Inspired vector icons</li>
-                            <li>- Very modern style  </li>
+                            <li>- Số lượng sản phẩm còn:'.$product_quantity.'</li>
+                            <li></li>
+                            <li></li>
                         </ul>
                     </div>
-                    <div>Số lượng sản phẩm còn:'.$product_quantity.'</div>
                     <form action="index.php?act=addtocart" method="post">
                         <div class="pro-details-quality">
                             <div class="cart-plus-minus">

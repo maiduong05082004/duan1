@@ -21,4 +21,5 @@
         $sql="update genre set genre_name=? where genre_id=?";
         pdo_execute($sql,$tenloai,$id);  
     }
+    
 ?>

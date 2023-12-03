@@ -41,7 +41,7 @@
                 <?php
                                      $i=0;
                                      $img_path="upload/";
-                                     foreach($spnew as $sp){
+                                     foreach($dssp as $sp){
                                          extract($sp);
                                          $hinh= $img_path.$product_img;
                                          $link="index.php?act=sanphamct&idsp=$product_id";

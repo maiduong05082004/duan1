@@ -1,5 +1,5 @@
 <div class="container mt-4">
-    <form class="needs-validation" name="frmthanhtoan" method="post" action="index.php?act=billcomfim">
+    <form class="needs-validation" name="fromthanhtoan" method="post" action="index.php?act=billcomfim">
         <div class="breadcrumb-area pt-35 pb-35 bg-gray-3 mb-5">
             <div class="container">
                 <div class="breadcrumb-content text-center">
@@ -22,21 +22,28 @@
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Giỏ hàng</span>
-                    <span class="badge badge-secondary badge-pill" style="color: rebeccapurple;"><?php echo count($_SESSION['mycart']); ?></span>
+                    <span class="badge badge-secondary badge-pill" style="color: rebeccapurple;">
+                        <?php echo isset($selected_items) ? count($selected_items) : 0; ?>
+                    </span>
                 </h4>
                 <ul class="list-group mb-3">
-                    <?php
+                <?php
                     $total = 0;
-                    foreach ($_SESSION['mycart'] as $id => $item) {
-                        $subtotal = $item['price'] * $item['soluong'];
-                        $total += $subtotal;
-                        echo '<li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">' . htmlspecialchars($item['name']) . '</h6>
-                        <small class="text-muted">' . number_format($item['price']) . ' x ' . $item['soluong'] . '</small>
-                    </div>
-                    <span class="text-muted">' . number_format($subtotal) . '₫</span>
-                    </li>';
+                    if(isset($selected_items)) {
+                        foreach ($selected_items as $selected_id) {
+                            if(isset($_SESSION['mycart'][$selected_id])) {
+                                $item = $_SESSION['mycart'][$selected_id];
+                                $subtotal = $item['price'] * $item['soluong'];
+                                $total += $subtotal;
+                                echo '<li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div>
+                                        <h6 class="my-0">' . htmlspecialchars($item['name']) . '</h6>
+                                        <small class="text-muted">' . number_format($item['price']) . ' x ' . $item['soluong'] . '</small>
+                                    </div>
+                                    <span class="text-muted">' . number_format($subtotal) . '₫</span>
+                                </li>';
+                            }
+                        }
                     }
                     ?>
                     <li class="list-group-item d-flex justify-content-between">
@@ -49,7 +56,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Mã khuyến mãi">
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Xác nhận</button>
+                        <button class="btn btn-secondary">Xác nhận</button>
                     </div>
                 </div>
 
@@ -94,7 +101,7 @@
                 </div>
 
                 <h4 class="mb-3">Hình thức thanh toán</h4>
-
+                <input type="hidden" name="bill_status" value="1">
                 <div class="d-block my-3">
                     <div class="custom-control custom-radio">
                         <input id="httt-1" name="pttt" type="radio" class="custom-control-input" required="" value="1" style="     height: auto;     width: auto; ">

@@ -1,81 +1,58 @@
- <div class="overall" style="margin: 10px;display: grid;grid-template-columns: 1fr 1fr;">
-     <div id="chart_div" style="width: 900px; height: 500px;">
-         <script type="text/javascript">
-             google.charts.load('current', {
-                 packages: ['corechart', 'line']
-             });
-             google.charts.setOnLoadCallback(drawBasic);
+<!-- Biểu đồ doanh số bán hàng theo ngày -->
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawRevenueChart);
 
-             function drawBasic() {
+function drawRevenueChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Ngày', 'Doanh Số'],
+        <?php foreach ($doanhthu as $row) {
+            echo "['" . $row['SaleDate'] . "', " . $row['TotalSales'] . "],";
+        } ?>
+    ]);
 
-                 var data = new google.visualization.DataTable();
-                 data.addColumn('date', 'Ngày');
-                 data.addColumn('number', 'Số tiền');
+    var options = {
+        title: 'Doanh số bán hàng theo ngày',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+    };
 
-                 data.addRows([
-                     // [0, 0], [1, 10], [2, 23], [3, 17], [4, 18], [5, 9],
-                     // [new Date(0), 0], // Chú ý sử dụng new Date() cho giá trị ngày tháng
-                     // [new Date(1), 10],
-                     // [new Date(2), 23],
-                     // [new Date(3), 17],
-                     // [new Date(4), 18],
-                     // [new Date(5), 9],
-                     <?php
-                        foreach ($doanhthu as $show_doanhthu) {
+    var chart = new google.visualization.LineChart(document.getElementById('revenue_chart'));
+    chart.draw(data, options);
+}
+</script>
 
-                            extract($show_doanhthu);
-                            echo "[new Date($ngay), $sotien],";
-                        }
-                        ?>
-                 ]);
+<!-- Biểu đồ số lượng sản phẩm bán ra theo thể loại -->
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawCategoryChart);
 
-                 var options = {
-                     hAxis: {
-                         title: 'Ngày'
-                     },
-                     vAxis: {
-                         title: 'Doanh số'
-                     }
-                 };
+function drawCategoryChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Thể loại', 'Số lượng bán ra'],
+        <?php foreach ($tonghangban as $hangban) {
+            echo "['" . $hangban['genre_name'] . "', " . $hangban['total_sold'] . "],";
+        } ?>
+    ]);
 
-                 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    var options = {
+        title: 'Số lượng sản phẩm bán ra theo thể loại',
+        hAxis: {
+            title: 'Thể loại',
+        },
+        vAxis: {
+            title: 'Số lượng bán ra',
+            minValue: 0,
+        },
+        bars: 'vertical',
+        height: 400,
+        colors: ['#1b9e77', '#d95f02', '#7570b3']
+    };
 
-                 chart.draw(data, options);
-             }
-         </script>
-     </div>
-     <div id="donutchart" style="width: 900px; height: 500px;">
-         <script type="text/javascript">
-             google.charts.load("current", {
-                 packages: ["corechart"]
-             });
-             google.charts.setOnLoadCallback(drawChart);
+    var chart = new google.visualization.ColumnChart(document.getElementById('category_chart'));
+    chart.draw(data, options);
+}
+</script>
 
-             function drawChart() {
-                 var data = google.visualization.arrayToDataTable([
-                     ['Task', 'Hours per Day'],
-                     // ['Work', 11],
-                     // ['Eat', 2],
-                     // ['Commute', 2],
-                     // ['Watch TV', 2],
-                     // ['Sleep', 7]
-                     <?php
-                        foreach ($soLuongPhim as $thongke) {
-                            extract($thongke);
-                            echo "['$genre_name',$total_movies],";
-                        }
-                        ?>
-                 ]);
-
-                 var options = {
-                     title: 'Số lượng phim',
-                     pieHole: 0.7,
-                 };
-
-                 var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-                 chart.draw(data, options);
-             }
-         </script>
-     </div>
-
- </div>
+<div id="revenue_chart" style="width: 900px; height: 500px;margin: 20px; padding:20px"></div>
+<div id="category_chart" style="width: 900px; height: 500px;margin: 20px; padding:20px"></div>

@@ -223,7 +223,21 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $listsanpham = loadall_product($kyw, $iddm);
 
             include "sanpham/list.php";
-
+            case "home":
+                include "./layout/home.php";
+            break;
+            case "bieudosp":
+                $listsanpham=loadall_sp_of_genre();
+                include "./product/bieudo.php";
+            break;
+            case "thongkepage":
+                $doanhthu=tongdoanhthutheongay();
+                $tonghangban=tonghangdaban();
+                include "./thongke/thongkepage.php";
+                break;
+            case "showbill":
+                $list_of_bills=loadbill();
+                include "./bill/showbill.php";
             break;
         case "exit":
             session_unset();

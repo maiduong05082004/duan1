@@ -131,88 +131,59 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             header('location:index.php?act=addtocart');
         break;
         case "bill":
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['selected_items'])) {
-                $selected_items = $_POST['selected_items'];
-                // Tính tổng tiền các sản phẩm được chọn
-                $tongdonhang = 0;
-                foreach ($_SESSION['mycart'] as $productId => $cartItem) {
-                    if (in_array($productId, $selected_items)) {
-                        $tongdonhang += $cartItem['ttien'];
-                    }
-                }
-                // Chuyển đến trang checkout và truyền thông tin đơn hàng
-                $_SESSION['selected_items'] = $selected_items; // Lưu các sản phẩm đã chọn vào session để xử lý ở bước tiếp theo
-                $_SESSION['tongdonhang'] = $tongdonhang; // Lưu tổng tiền vào session
-                include "client/cart/checkout.php";
-            } else {
-                echo "<script>alert('Giỏ hàng trống hoặc không có sản phẩm nào được chọn!'); window.location = 'index.php?act=addtocart';</script>";
+        if (empty($_SESSION['mycart'])) {
+            // Giỏ hàng trống
+            echo "<script>alert('Giỏ hàng trống, vui lòng chọn sản phẩm!'); window.location = 'index.php?act=addtocart';</script>";
+        } else {
+            include "client/cart/checkout.php";
+        }
+        break;
+case "billcomfim":
+    if (isset($_POST['dathangthanhcong'])) {
+        // Tiến hành lấy dữ liệu từ form và gán vào các biến
+        if(isset($_SESSION['user'])){ $iduser=$_SESSION['user']['acc_id'];}
+        else{ $iduser=0;}
+        $name = $_POST['kh_ten'];
+        $email = $_POST['kh_email'];
+        $address = $_POST['kh_diachi'];
+        $tel = $_POST['kh_dienthoai'];
+        $pttt = $_POST['pttt'];
+        $ngaydathang = date('Y-m-d H:i:s'); // Định dạng datetime cho SQL
+        $tongdonhang = tongdonhang()['numeric']; // Lấy giá trị số
+   
+        // Chèn thông tin đơn hàng vào cơ sở dữ liệu và lấy ID của đơn hàng mới
+        $idbill = insert_bill($iduser,$name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang);
+        if (isset($_SESSION['user']['acc_id'])) {
+            foreach ($_SESSION['mycart'] as $productId => $cartItem) {
+                insert_cart(
+                    $_SESSION['user']['acc_id'],
+                    $productId,
+                    $cartItem['name'],
+                    $cartItem['img'],
+                    $cartItem['price'],
+                    $cartItem['soluong'],
+                    $cartItem['ttien'],
+                    $idbill
+                );
             }
-            break;
-        
-            case "billcomfim":
-                if (isset($_POST['dathangthanhcong']) && isset($_SESSION['selected_items'])) {
-                    $selected_items = $_SESSION['selected_items'];
-                    $tongdonhang = $_SESSION['tongdonhang'];
-            
-                    // Xử lý đơn hàng
-                    if(isset($_SESSION['user'])) {
-                        $iduser = $_SESSION['user']['acc_id'];
-                        $name = $_POST['kh_ten'];
-                        $email = $_POST['kh_email'];
-                        $address = $_POST['kh_diachi'];
-                        $tel = $_POST['kh_dienthoai'];
-                        $pttt = $_POST['pttt'];
-                        $status = $_POST['bill_status'];
-                        $ngaydathang = date('Y-m-d H:i:s');
-            
-                        // Chèn thông tin đơn hàng vào cơ sở dữ liệu và lấy ID của đơn hàng mới
-                        $idbill = insert_bill($iduser, $name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang, $status);
-            
-                        // Chèn thông tin các sản phẩm được chọn vào cơ sở dữ liệu
-                        foreach ($_SESSION['mycart'] as $productId => $cartItem) {
-                            if (in_array($productId, $selected_items)) {
-                                insert_cart(
-                                    $iduser,
-                                    $productId,
-                                    $cartItem['name'],
-                                    $cartItem['img'],
-                                    $cartItem['price'],
-                                    $cartItem['soluong'],
-                                    $cartItem['ttien'],
-                                    $idbill
-                                );
-                            }
-                        }
-            
-                        // Xóa thông tin đơn hàng và sản phẩm đã chọn khỏi session
-                        unset($_SESSION['selected_items']);
-                        unset($_SESSION['tongdonhang']);
-                        unset($_SESSION['mycart']);
-            
-                        // Tải thông tin đơn hàng để hiển thị
-                        $bill = loadone_bill($idbill);
-                        include "client/cart/billcomfim.php";
-                    } else {
-                        echo "<h3 class='text-center text-danger'>Tài khoản của khách hàng chưa đăng nhập chúng tôi sẽ gửi hóa đơn thanh toán cho quý khách qua email!</h3>";
-                    }
-                }
-                break;
-            
-        
+        } else {
+            echo "<h3 class='text-center text-danger'>Tài khoản của khách hàng chưa đăng nhập chúng tôi sẽ gửi hóa đơn thanh toán cho quý khách qua email!</h3>";
+        }
+        unset($_SESSION['mycart']);
+        $listbill = loadone_bill($idbill);
+        include "client/cart/billcomfim.php";
+
+    }
+    break;
 
     case "mybill":
-        $id=$_SESSION['user']['acc_id'];
-        $listbilluser=loadone_bill_user($id);
-        include "./client/taikhoan/mybill.php";
+        $listbilluser=loadone_bill_user($_SESSION['user']['acc_id']);
+        include "client/taikhoan/mybill.php";
     break;
-    case "mybillct":
-        if (isset($_GET['idbill'])) {
-            $idbill = $_GET['idbill'];
-        }
-        $listbilluser=loadone_bill_user($idbill);
-        $listcartuser=loadall_cart_user($idbill);
-        include "./client/taikhoan/mybillct.php";
+    case "capnhaptaikhoan":
+        
         break;
+    
     case "exit":
         session_unset();
         header('location:index.php?act=sanpham');

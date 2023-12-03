@@ -7,8 +7,8 @@ extract($bill);
       Đặt hàng thành công
     </div>
     <div class="card-body">
-      <h5 class="card-title">Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi!</h5>
-      <p class="card-text">Thông tin người đặt hàng gồm:</p>
+      <h3 class="card-title">Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi!</h3>
+      <h4 class="card-text">Thông tin người đặt hàng gồm:</h4>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><strong>Họ và tên:</strong><?= htmlspecialchars($bill['bill_name']); ?></li>
         <li class="list-group-item"><strong>Số điện thoại:</strong> <?= htmlspecialchars($bill['bill_tel']); ?></li>
@@ -16,9 +16,9 @@ extract($bill);
         <li class="list-group-item"><strong>Phương thức thanh toán:</strong> <?= htmlspecialchars($bill['bill_pttt'] == 1 ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản ngân hàng'); ?></li>
       </ul>
       <br>
-      <p class="card-text">Thông tin đơn hàng gồm:</p>
+      <h4 class="card-text">Thông tin đơn hàng gồm:</h4>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>Mã đơn hàng:</strong> <?= "LDT".$idbill ?></li>
+        <li class="list-group-item"><strong>Mã đơn hàng:</strong> <?= "LDT-".$idbill ?></li>
         <li class="list-group-item"><strong>Ngày đặt hàng:</strong> <?= $ngaydathang ?></li>
         <li class="list-group-item"><strong>Tổng đơn hàng:</strong> <?= number_format($bill_total, 0, ',', '.') ?>₫</li>
       

@@ -7,4 +7,5 @@ include "Model/product.php";
 include "Model/comment.php";
 include "Model/thongke.php";
 include "Model/genre.php";
+include "Model/bill.php";
 ?>

@@ -40,8 +40,8 @@ function tongdonhang() {
 }
 
 
-function insert_bill($iduser,$name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang) {
-    $sql = "INSERT INTO bill (acc_id,bill_name, bill_email, bill_address, bill_tel, bill_pttt, ngaydathang, bill_total) VALUES  ('$iduser', '$name','$email', '$address', '$tel',' $pttt',' $ngaydathang', '$tongdonhang')";
+function insert_bill($iduser,$name, $email, $address, $tel, $pttt, $ngaydathang, $tongdonhang,$status) {
+    $sql = "INSERT INTO bill (acc_id,bill_name, bill_email, bill_address, bill_tel, bill_pttt, ngaydathang, bill_total,bill_status) VALUES  ('$iduser', '$name','$email', '$address', '$tel',' $pttt',' $ngaydathang', '$tongdonhang','$status')";
     pdo_execute($sql);
     return pdo_execute_return_lastInsertId($sql);
 }
@@ -55,6 +55,23 @@ function loadone_bill($idbill){
     $sql = "SELECT * FROM bill WHERE idbill = " . $idbill;
     $listbill=pdo_query_one($sql);    
     return $listbill;
+}
+function displayStatus($status) {
+    switch ($status) {
+        case 1:
+            return 'Đang xử lý';
+        case 2:
+            return 'Đang giao hàng';
+        case 3:
+            return 'Đã giao hàng';
+        default:
+            return 'Lỗi đơn hàng vui lòng đặt lại';
+    }
+}
+function loadall_cart_count($idbill) {
+    $sql = "SELECT SUM(product_quantity) as total_quantity FROM cart WHERE idbill = ?";
+    $countResult = pdo_query_one($sql, $idbill);    
+    return $countResult['total_quantity'] ?? 0;
 }
 
 ?>

@@ -34,16 +34,16 @@
             <ul>
 
                 <li><a href="../index.php?act=home">Home</a></li>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="index.php?act=showaccount">Tài khoản</a>
                     <ul class="submenu">
                         <li><a href="index.php?act=addaccount">Thêm tài khoản</a></li>
                         <li><a href="index.php?act=showcomment">Comment</a></li>
                         <li><a href="#">Thống Kê</a></li>
                     </ul>
-                </li>
-                <li><a href="index.php?act=showmovie">Quản lý</a></li>
-                <li><a href="index.php?act=thongke">Thống kê</a></li>
+                </li> -->
+                <!-- <li><a href="index.php?act=showmovie">Quản lý</a></li>
+                <li><a href="index.php?act=thongke">Thống kê</a></li> -->
             </ul>
         </nav>
     </div>

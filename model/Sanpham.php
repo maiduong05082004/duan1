@@ -16,17 +16,20 @@
         $listsanpham=pdo_query($sql);
         return  $listsanpham;
     }
-    function loadall_sanpham($kyw,$iddm){
-        $sql="SELECT * FROM product where 1";
-        if ($kyw!="") {
-            $sql.=" and product_name like '%".$kyw."%'";
+    function loadall_product($kyw = "", $iddm = 0) {
+        $sql = "SELECT * FROM product WHERE 1";
+    
+        if ($kyw != "") {
+            $sql .= " AND product_name LIKE '%" . $kyw . "%'";
         }
-        if ($iddm>0) {
-            $sql.=" and genre_id='".$iddm."'";
+        if ($iddm > 0) {
+            $sql .= " AND genre_id = '" . $iddm . "'";
         }
-        $sql.=" order by product_id desc";
-        $listsanpham=pdo_query($sql);
-        return  $listsanpham;
+    
+        $sql .= " ORDER BY product_id DESC";
+        $listsanpham = pdo_query($sql);
+    
+        return $listsanpham;
     }
     function load_ten_dm($iddm){
         if ($iddm>0) {

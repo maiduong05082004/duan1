@@ -12,21 +12,19 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
           const data = google.visualization.arrayToDataTable([
-            ['Danh Mục', 'Số Lượng'],
+            ['Danh Mục', 'Số Lượng sản phẩm'],
         <?php   
         
-        foreach($listsanpham as $sanpham){
-          extract($sanpham);
-          echo "['$genre_name',$soBinhLuan],";
-
-        }
+        foreach ($listsanpham as $sanpham) {
+          echo "['" . $sanpham['genre_name'] . "', " . $sanpham['product_count'] . "],";
+      }
         
         ?>  
           ]);
 
 // Set Options
           const options = {
-            title:'Biểu đồ bình luận sản phẩm',
+            title:'Biểu đồ số lượng sản phẩm',
             is3D:true
           };
 

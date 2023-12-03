@@ -72,9 +72,18 @@ $dsdm = loadall_genre();
                         <div class="same-style header-search">
                             <a class="search-active" href="#"><i class="pe-7s-search"></i></a>
                             <div class="search-content">
-                                <form action="#">
-                                    <input type="text" placeholder="Search" />
-                                    <button class="button-search"><i class="pe-7s-search"></i></button>
+                                <form action="index.php?act=sanpham" method="post" enctype="multipart/form-data">
+                                    <input type="text" placeholder="Search" name="kyw"/>
+                                    <select name="iddm" class="search-input" style="display: none;">
+                                        <option value="0">tất cả</option>
+                                        <?php
+                                        foreach ($tendm as $danhmuc) {
+                                            extract($danhmuc);
+                                            echo ' <option value="' . $genre_id . '">' . $genre_name . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                    <button class="button-search" name="listok"><i class="pe-7s-search"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -89,9 +98,9 @@ $dsdm = loadall_genre();
                                         <li><a href="index.php?act=login"><?= $acc_user ?></a></li>
                                         <li><a href="index.php?act=quenmk">Quên mật khẩu</a></li>
                                         <li><a href="index.php?act=accinfo">Thông tin cá nhân</a></li>
-                                        <li><a href="#">Đơn hàng của tôi</a></li>
+                                        <li><a href="index.php?act=mybill">Đơn hàng của tôi</a></li>
                                         <?php if ($role == 1) { ?>
-                                            <li><a href="admin/index.php?act=thongke">Quản lý admin</a></li>
+                                            <li><a href="admin/index.php?act=home">Quản lý admin</a></li>
                                         <?php } ?>
                                         <li><a href="index.php?act=exit">Thoát</a></li>
                                     </ul>
