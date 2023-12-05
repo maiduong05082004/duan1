@@ -54,5 +54,5 @@ function drawCategoryChart() {
 }
 </script>
 
-<div id="revenue_chart" style="width: 900px; height: 500px;margin: 20px; padding:20px"></div>
-<div id="category_chart" style="width: 900px; height: 500px;margin: 20px; padding:20px"></div>
+<div id="revenue_chart" style="width: 900px; height: 500px;margin: 20px;"></div>
+<div id="category_chart" style="width: 900px; height: 500px;margin-top:34px;"></div>

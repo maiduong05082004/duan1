@@ -67,24 +67,6 @@
                         <input type="hidden" name="img" value="'.$product_img.'">
                         <input type="hidden" name="price" value="'.$product_price.'">
                     </form>
-
-
-                    <div class="pro-details-meta">
-                        <span>Categories :</span>
-                        <ul>
-                            <li><a href="#">Minimal,</a></li>
-                            <li><a href="#">Furniture,</a></li>
-                            <li><a href="#">Fashion</a></li>
-                        </ul>
-                    </div>
-                    <div class="pro-details-meta">
-                        <span>Tag :</span>
-                        <ul>
-                            <li><a href="#">Fashion, </a></li>
-                            <li><a href="#">Furniture,</a></li>
-                            <li><a href="#">Electronic</a></li>
-                        </ul>
-                    </div>
                     <div class="pro-details-social">
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -109,40 +91,23 @@
     <div class="container">
         <div class="description-review-wrapper">
             <div class="description-review-topbar nav">
-                <a data-bs-toggle="tab" href="#des-details1">Additional information</a>
-                <a class="active" data-bs-toggle="tab" href="#des-details2">Description</a>
-                <a data-bs-toggle="tab" href="#des-details3">Reviews (2)</a>
+                <a class="active" data-bs-toggle="tab" href="#des-details2">Đánh giá sản phẩm</a>
             </div>
             <div class="tab-content description-review-bottom">
                 <div id="des-details2" class="tab-pane active">
-                    <div class="product-description-wrapper">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
-                        <p>ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo consequat. Duis aute irure dolor in reprehend in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt </p>
-                    </div>
-                </div>
-                <div id="des-details1" class="tab-pane ">
-                    <div class="product-anotherinfo-wrapper">
-                        <ul>
-                            <li><span>Weight</span> 400 g</li>
-                            <li><span>Dimensions</span>10 x 10 x 15 cm </li>
-                            <li><span>Materials</span> 60% cotton, 40% polyester</li>
-                            <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="des-details3" class="tab-pane">
-                    <div class="row">
+                <div class="row">
                         <div class="col-lg-7">
+                            <!-- fix -->
                             <div class="review-wrapper">
                                 <div class="single-review">
                                     <div class="review-img">
-                                        <img src="assets/img/testimonial/1.jpg" alt="">
+                                        <img src="upload\anhuser.jpg" alt="" width="88" height="99">
                                     </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
                                             <div class="review-left">
                                                 <div class="review-name">
-                                                    <h4>White Lewis</h4>
+                                                    <h4>Khánh linh</h4>
                                                 </div>
                                                 <div class="review-rating">
                                                     <i class="fa fa-star"></i>
@@ -152,24 +117,21 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                             </div>
-                                            <div class="review-left">
-                                                <a href="#">Reply</a>
-                                            </div>
                                         </div>
                                         <div class="review-bottom">
-                                            <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.</p>
+                                            <p>Mua laptop từ LAPDTECH thật sự là một trải nghiệm tuyệt vời - từ dịch vụ khách hàng nhiệt tình đến chất lượng sản phẩm vượt trội. Tôi hoàn toàn hài lòng!</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="single-review ">
                                     <div class="review-img">
-                                        <img src="assets/img/testimonial/2.jpg" alt="">
+                                        <img src="upload\anhuser2.jpg" alt="" width="88" height="99">
                                     </div>
                                     <div class="review-content">
                                         <div class="review-top-wrap">
                                             <div class="review-left">
                                                 <div class="review-name">
-                                                    <h4>White Lewis</h4>
+                                                    <h4>Minh Thư</h4>
                                                 </div>
                                                 <div class="review-rating">
                                                     <i class="fa fa-star"></i>
@@ -179,24 +141,70 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                             </div>
-                                            <div class="review-left">
-                                                <a href="#">Reply</a>
-                                            </div>
                                         </div>
                                         <div class="review-bottom">
-                                            <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
+                                            <p>Tôi ấn tượng với tốc độ giao hàng nhanh chóng của LAPDTECH. Laptop đến tay tôi trong tình trạng hoàn hảo và hiệu năng vượt ngoài mong đợi. </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end -->
+                            <?php
+                            $i=0;
+                            $img='<img src="assets/img/testimonial/1.jpg" alt="" width="88" height="99">';
+                            foreach($listbinhluan as $binhluan){
+                                if($i==0){
+                                    $img='<img src="upload/anhuser1.jpg" alt="" width="88" height="99">';
+                                }elseif($i==1){
+                                    $img='<img src="upload/anhuser2.jpg" alt="" width="88" height="99">';
+                                }elseif($i==2){
+                                    $img='<img src="upload/anhuser3.jpg" alt="" width="88" height="99">';
+                                }elseif($i==3){
+                                    $img='<img src="upload/anhuser4.jpg" alt="" width="88" height="99">';
+                                }elseif($i==4){
+                                    $i=0;
+                                    $img='<img src="upload/anhuser.jpg" alt="" width="88" height="99">';
+                                }else{
+                                    $img='<img src="jpg" alt="ảnh lỗi">';
+                                }
+                                extract($binhluan);
+                                echo '<div class="review-wrapper">
+                                        <div class="single-review">
+                                            <div class="review-img">
+                                                '.$img.'
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>'.$acc_name.'</h4>
+                                                        </div>
+                                                        <div class="review-rating">
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>'.$content.'.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                    $i++;
+                            }
+                            ?>
                         </div>
                         <div class="col-lg-5">
                             <div class="ratting-form-wrapper pl-50">
-                                <h3>Add a Review</h3>
+                                <h3>Đánh giá sản phẩm</h3>
                                 <div class="ratting-form">
                                     <form action="#">
                                         <div class="star-box">
-                                            <span>Your rating:</span>
+                                            <span>Đánh giá của bạn:</span>
                                             <div class="ratting-star">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -208,18 +216,14 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="rating-form-style mb-10">
-                                                    <input placeholder="Name" type="text">
+                                                    <p style="color:#767676">Tài khoản: Dương</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="rating-form-style mb-10">
-                                                    <input placeholder="Email" type="email">
-                                                </div>
-                                            </div>
+         
                                             <div class="col-md-12">
                                                 <div class="rating-form-style form-submit">
-                                                    <textarea name="Your Review" placeholder="Message"></textarea>
-                                                    <input type="submit" value="Submit">
+                                                    <textarea name="Your Review" placeholder="Tin nhắn"></textarea>
+                                                    <input type="submit" value="Bình luận">
                                                 </div>
                                             </div>
                                         </div>
@@ -229,6 +233,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -259,3 +264,21 @@
 }
 ?>
 </div>
+<script>
+document.getElementById('add-to-cart-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    fetch('index.php?act=addtocart', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.querySelector('.count-style').textContent = data.cartCount;
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+</script>

@@ -33,13 +33,13 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-wrap mb-30 scroll-zoom">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="upload/a6.jpg" alt=""></a>
+                        <a href="index.php?act=sanphamct&idsp=13"><img src="upload/a6.jpg" alt=""></a>
                         <span class="purple">-20%</span>
                     </div>
                     <div class="blog-content-wrap">
                         <div class="blog-content text-center">
-                            <h3><a href="blog-details.html">HP ProOne 440 G9 AIO i7 <br> 12700T 23.8 inch</a></h3>
-                            <span> <a href="#">24.390.000₫</a></span>
+                            <h3><a href="index.php?act=sanphamct&idsp=13">HP ProOne 440 G9 AIO i7 <br> 12700T 23.8 inch</a></h3>
+                            <span> <a href="index.php?act=sanphamct&idsp=13">24.390.000₫</a></span>
                         </div>
                     </div>
                 </div>
@@ -47,13 +47,13 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-wrap mb-30 scroll-zoom">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="upload/a8.jpg" alt=""></a>
+                        <a href="index.php?act=sanphamct&idsp=12"><img src="upload/a8.jpg" alt=""></a>
                         <span class="pink">-20%</span>
                     </div>
                     <div class="blog-content-wrap">
                         <div class="blog-content text-center">
-                            <h3><a href="blog-details.html">HP AIO ProOne 240 G9 i3 <br> 1215U 23.8 inch</a></h3>
-                            <span><a href="#">15.390.000₫</a></span>
+                            <h3><a href="index.php?act=sanphamct&idsp=12">HP AIO ProOne 240 G9 i3 <br> 1215U 23.8 inch</a></h3>
+                            <span><a href="index.php?act=sanphamct&idsp=12">15.390.000₫</a></span>
                         </div>
                     </div>
                 </div>
@@ -61,13 +61,13 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-wrap mb-30 scroll-zoom">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="upload/a10.jpg" alt=""></a>
+                        <a href="index.php?act=sanphamct&idsp=15"><img src="upload/a10.jpg" alt=""></a>
                         <span class="purple">-30%</span>
                     </div>
                     <div class="blog-content-wrap">
                         <div class="blog-content text-center">
-                            <h3><a href="blog-details.html">Asus Vivobook X415EA i3 <br></a></h3>
-                            <span><a href="#">15.060.000₫</a></span>
+                            <h3><a href="index.php?act=sanphamct&idsp=15">Asus Vivobook X415EA i3 <br></a></h3>
+                            <span><a href="index.php?act=sanphamct&idsp=15">15.060.000₫</a></span>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
             <div class="col-lg-2 col-md-4 col-sm-4">
                 <div class="copyright mb-30">
                     <div class="footer-logo">
-                        <a href="index.html">
+                        <a href="index.php">
                             <img alt="" src="assets/img/logo/laptech.png" style="     width: 100px; ">
                         </a>
                     </div>

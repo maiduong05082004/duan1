@@ -3,6 +3,7 @@ ob_start();
 include "client/layout//header.php";
 include "model/Sanpham.php";
 include "model/taikhoan.php";
+include "model/comment.php";
 include "model/cart.php";
 $spnew = loadall_sanpham_home();
 $tendm = loadall_genre();
