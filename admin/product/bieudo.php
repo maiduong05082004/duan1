@@ -1,6 +1,6 @@
 <div class="row2">
     <div class="row2 font_title">
-      <h1>Biểu đồ</h1>
+      <h1 class="text-center mt-5">Biểu đồ</h1>
     </div>
     <div class="row2 form_content ">
       <div

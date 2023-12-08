@@ -45,6 +45,7 @@
                                          extract($sp);
                                          $hinh= $img_path.$product_img;
                                          $link="index.php?act=sanphamct&idsp=$product_id";
+                                         $wistlist="index.php?act=addwishlist&id=$product_id";
                                         //  if(($i==2)||($i==5)||($i==8)){
                                         //      $mr="";
                                         //  }else{
@@ -61,7 +62,7 @@
                                 <span class="pink">-10%</span>
                                 <div class="product-action">
                                     <div class="pro-same-action pro-wishlist">
-                                        <a title="Wishlist" href=""><i class="pe-7s-like"></i></a>
+                                        <a title="Wishlist" href="'.$wistlist.'"><i class="pe-7s-like"></i></a>
                                     </div>
                                     <div class="pro-same-action pro-cart">
                                         <a title="Add To Cart" href="'.$link.'"><i class="pe-7s-cart"></i> Add to cart</a>

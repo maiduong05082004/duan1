@@ -31,7 +31,7 @@
               $hinh = "upload/" . $item['img'];
               $ttien = $item['price'] * $item['soluong'];
               $tong += $ttien;
-              $xoasp = '<a href="index.php?act=delcart&idcart=' . $id . '"><input type="button" value="Xóa"></a>';
+              $xoasp = '<a href="index.php?act=delcart&idcart=' . $id . '"><input type="button" value="Xóa" style="     color: #fff;     background-color: #6c757d;     border-color: #6c757d;     border: 1px solid;     margin: 20px 0;     padding: 10px;     border-radius: 5px; "></a>';
               $formatted_price = number_format($item['price'], 0, ',', '.') . '₫';
               $formatted_total = number_format($ttien, 0, ',', '.') . '₫';
               echo '<tr>
@@ -60,10 +60,10 @@
 
   <div class="row mb bill" style="display: flex;margin: 0 auto;justify-content: center; ">
     <a href="index.php?act=bill" style="width: 185px; ">
-      <input type="submit" value="Tiếp tục thanh toán" style="border: 1px solid;margin: 20px 0;">
+      <input type="submit" value="Tiếp tục thanh toán" style="color: #fff;background-color: #6c757d;border-color: #6c757d;border: 1px solid;margin: 20px 0;padding: 10px;border-radius: 5px;">
     </a>
-    <a href="index.php?act=delcart" style="border: 1px solid;margin:20px 0;width: 185px;">
-      <input type="button" value="Xóa toàn bộ sản phẩm" style="width: 184px;margin-left: -14px;">
+    <a href="index.php?act=delcart" style="width: 185px;">
+      <input type="button" value="Xóa toàn bộ sản phẩm" style="width: 184px;color: #fff;background-color: #6c757d;border-color: #6c757d;border: 1px solid;margin: 20px 0;padding: 10px;border-radius: 5px;">
     </a>
   </div>
   </form>

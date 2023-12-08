@@ -1,9 +1,3 @@
-<?php
-session_start();
-include "model/pdo.php";
-include "model/danhmuc.php";
-$dsdm = loadall_genre();
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -99,7 +93,7 @@ $dsdm = loadall_genre();
                                         <li><a href="index.php?act=quenmk">Quên mật khẩu</a></li>
                                         <li><a href="index.php?act=accinfo">Thông tin cá nhân</a></li>
                                         <li><a href="index.php?act=mybill">Đơn hàng của tôi</a></li>
-                                        <?php if ($role == 1) { ?>
+                                        <?php if ($role == 1||$role==2) { ?>
                                             <li><a href="admin/index.php?act=home">Quản lý admin</a></li>
                                         <?php } ?>
                                         <li><a href="index.php?act=exit">Thoát</a></li>
@@ -127,7 +121,6 @@ $dsdm = loadall_genre();
                         </div>
                         <?php
                         $soluongtong = 0;
-
                         if (!empty($_SESSION['mycart'])) {
                             foreach ($_SESSION['mycart'] as $item) {
                                 $soluongtong += $item['soluong'];
@@ -187,8 +180,8 @@ $dsdm = loadall_genre();
                                 
                             </ul>
                             <div class="shopping-cart-total">
-                                <h4>Shipping : <span>$20.00</span></h4>
-                                <h4>Total : <span class="shop-total">$260.00</span></h4>
+                                <h4>Shipping : <span>$0.00</span></h4>
+                                <h4>Total : <span class="shop-total">$0.00</span></h4>
                             </div>
                             <div class="shopping-cart-btn btn-hover text-center">
                             <a class="default-btn" href="index.php?act=addtocart">view cart</a>

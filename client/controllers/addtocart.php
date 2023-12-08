@@ -65,7 +65,7 @@ function displayStatus($status) {
         case 3:
             return 'Đã giao hàng';
         default:
-            return 'Lỗi đơn hàng vui lòng đặt lại';
+            return 'Đơn hàng đã bị hủy';
     }
 }
 function loadall_cart_count($idbill) {

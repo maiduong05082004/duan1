@@ -55,10 +55,10 @@
             <hr class="sidebar-divider d-none d-md-block">
             <div class="dropdown">
                 <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                    Account setting admin
+                Cài đặt tài khoản Admin
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 197px;">
-                    <a class="dropdown-item" href="account-settings.php">Cài đặt tài khoản</a>
+                    <a class="dropdown-item" href="index.php?act=accinfo">Cài đặt tài khoản</a>
                     <a class="dropdown-item" href="index.php?act=showadmin">Kiểm tra Admin</a>
                     <a class="dropdown-item" href="index.php?act=exit">Đăng xuất</a>
                     <!-- Thêm các liên kết khác tại đây nếu cần -->

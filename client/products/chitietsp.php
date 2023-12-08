@@ -58,7 +58,7 @@
                             </div>
                             <div class="pro-details-cart btn-hover">
                                 <a href="#" style="line-height: 0;padding:0;margin-left: 20px;">
-                                    <input type="submit" name="addtocart" id="add-to-cart-form" value="Thêm vào giỏ hàng" style="     background: #ffffff00;     border: none;     color: white;     height: 0px;     margin: 7px 0px 7px 0px;     padding: 21px 19px;     font-weight: bold; ">
+                                    <input type="submit" name="addtocart" id="add-to-cart-form" onclick="addToCart(1)" value="Thêm vào giỏ hàng" style="     background: #ffffff00;     border: none;     color: white;     height: 0px;     margin: 7px 0px 7px 0px;     padding: 21px 19px;     font-weight: bold; ">
                                 </a>
                             </div>
                         </div>

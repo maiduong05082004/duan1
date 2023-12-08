@@ -7,9 +7,9 @@ function insert_account($user, $password, $email, $tel, $address, $name, $role)
 
 function loadall_account_user($kyw = "")
 {
-    $sql = "SELECT a.acc_id,a.acc_user,a.acc_pass,acc_email,a.acc_name,a.acc_address,acc_tel, r.role_name 
+    $sql = "SELECT a.acc_id,a.acc_user,a.acc_pass,acc_email,a.acc_name,a.acc_address,acc_tel, r.role_name,a.role 
     FROM account a 
-    LEFT JOIN role_of_account r ON a.role = r.role_id where a.role = 2 OR a.role = 3 ";
+    LEFT JOIN role_of_account r ON a.role = r.role_id where a.role = 2 OR a.role = 3 OR a.role = 4";
     if ($kyw != "") {
         $sql .= "and a.acc_user LIKE '%" . $kyw . "%'";
     }
@@ -37,8 +37,34 @@ function update_account_user($id, $user, $password, $email, $tel, $address, $nam
             WHERE acc_id = '$id'";
     pdo_execute($sql);
 }
+function block_account_user($id, $role=4) {
+    $sql = "UPDATE account 
+            SET role = '$role'
+            WHERE acc_id = '$id'";
+    pdo_execute($sql);
+}
+function unblock_account_user($id, $role=3) {
+    $sql = "UPDATE account 
+            SET role = '$role'
+            WHERE acc_id = '$id'";
+    pdo_execute($sql);
+}
 function delete_account_admin($id){
     $sql = "DELETE FROM account WHERE acc_id = $id";
     pdo_execute($sql);
 }
+function update_capnhat_admin($id,$name,$email,$address,$tel){
+    $sql="update account set acc_name='".$name."',acc_email='".$email."',acc_address='".$address."',acc_tel='".$tel."' where acc_id=".$id;
+        pdo_execute($sql);  
+    }
+    function checkAdminRole() {
+        if ($_SESSION['user']['role'] != 1) {
+            echo "<script>
+                alert('Bạn không có quyền truy cập vào trang này.');
+                window.location.href = 'index.php?act=home';
+              </script>";
+            exit;
+        }
+    }
+    
 ?>

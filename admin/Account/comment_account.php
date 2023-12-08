@@ -19,6 +19,7 @@
             foreach ($listcomment as $comment) {
                 extract($comment);
                 $xoatk = "index.php?act=xoacomment&id=" . $cmt_id;
+                $nutblock = "index.php?act=block&acc_id=".$acc_id;
                 echo '<tr>
                         <td>' . $acc_name . '</td>
                         <td>' . $product_name . '</td>
@@ -26,7 +27,7 @@
                         <td>' . $date . '</td>
                         <td>
                             <a href="' . $xoatk . '"><button class="submit-btn">Xóa</button></a>
-                            <a href="' . $xoatk . '"><button class="submit-btn">block user</button></a>
+                            <a href="' . $nutblock . '"><button class="submit-btn">Chặn người dùng</button></a>
                         </td>
                     </tr>';
             }

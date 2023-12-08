@@ -66,7 +66,7 @@
                     </div>
                     <div class="blog-content-wrap">
                         <div class="blog-content text-center">
-                            <h3><a href="index.php?act=sanphamct&idsp=15">Asus Vivobook X415EA i3 <br></a></h3>
+                            <h3><a href="index.php?act=sanphamct&idsp=15">Asus Vivobook X415EA i3 5300U (21A200RWVN)<br></a></h3>
                             <span><a href="index.php?act=sanphamct&idsp=15">15.060.000₫</a></span>
                         </div>
                     </div>

@@ -33,7 +33,7 @@
         <nav class="menu-nav">
             <ul>
 
-                <li><a href="../index.php?act=home">Home</a></li>
+                <li><a href="../index.php?act=home">Xem trang chủ</a></li>
                 <!-- <li class="dropdown">
                     <a href="index.php?act=showaccount">Tài khoản</a>
                     <ul class="submenu">

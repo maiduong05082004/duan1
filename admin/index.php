@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1 && $_SESSION['user']['role'] != 2) {
     header('Location: ../index.php?act=login');
     exit;
 }
@@ -10,6 +10,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
         case "showaccount":
+            checkAdminRole();
             if (isset($_POST["listok"]) && $_POST["listok"]) {
                 $kyw = $_POST["kyw"];
             } else {
@@ -19,6 +20,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "Account/show_account.php";
             break;
         case "showadmin":
+            checkAdminRole();
             if (isset($_POST["listok"]) && $_POST["listok"]) {
                 $kyw = $_POST["kyw"];
             } else {
@@ -27,7 +29,33 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $listaccount = loadall_account_admin($kyw);
             include "Account/show_admin.php";
             break;
+        case "accinfo":
+            if (isset($_POST['capnhapuser'])) {
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $tel = $_POST['tel'];
+                $id = $_SESSION['user']['acc_id'];
+
+                // Cập nhật thông tin tài khoản trong database
+                update_capnhat_admin($id, $name, $email, $address, $tel);
+
+                // Cập nhật thông tin trong session
+                $_SESSION['user']['acc_name'] = $name;
+                $_SESSION['user']['acc_email'] = $email;
+                $_SESSION['user']['acc_address'] = $address;
+                $_SESSION['user']['acc_tel'] = $tel;
+
+                // Chuyển hướng người dùng về trang thông tin cá nhân
+                header('Location: index.php?act=accinfo');
+                exit();
+            }
+            // Lấy thông tin tài khoản từ session để hiển thị
+            $list = $_SESSION['user'] ?? null;
+            include "Account/accinfo.php";
+            break;
         case "addaccount":
+            checkAdminRole();
             if (isset($_POST["addaccount"]) && ($_POST["addaccount"])) {
                 $firstName = $_POST['firstname'];
                 $lastName = $_POST['lasttname'];
@@ -48,6 +76,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "Account/add_account.php";
             break;
         case "updateaccount":
+            checkAdminRole();
             if (isset($_POST['acc_id'])) {
                 $id = $_GET['acc_id'];
                 $account = check_account_user($id);
@@ -55,6 +84,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "Account/update_account.php";
             break;
         case 'editkh':
+            checkAdminRole();
             if (isset($_POST['btn_updatekh'])) {
                 $id = $_POST['id'];
                 $user = $_POST['nameaccount'];
@@ -70,6 +100,20 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $listaccount = loadall_account_user($kyw = "");
             require 'Account/show_account.php';
             break;
+        case "block":
+
+            $id = $_GET['acc_id'];
+            block_account_user($id);
+            header('location: index.php?act=showaccount');
+
+            break;
+        case "unblock":
+
+            $id = $_GET['acc_id'];
+            unblock_account_user($id);
+            header('location: index.php?act=showaccount');
+
+            break;
         case 'xoaaccount':
             $id = $_GET['acc_id'];
             delete_account_admin($id);
@@ -82,6 +126,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "Account/comment_account.php";
             break;
         case 'showcommentofid':
+            checkAdminRole();
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                 $product_id = $_GET['product_id'];
                 $listcomment = loadall_comment_by_product_id($product_id);
@@ -223,21 +268,46 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $listsanpham = loadall_product($kyw, $iddm);
 
             include "sanpham/list.php";
-            case "home":
-                include "./layout/home.php";
+        case "home":
+            include "./layout/home.php";
             break;
-            case "bieudosp":
-                $listsanpham=loadall_sp_of_genre();
-                include "./product/bieudo.php";
+        case "bieudosp":
+            $listsanpham = loadall_sp_of_genre();
+            include "./product/bieudo.php";
             break;
-            case "thongkepage":
-                $doanhthu=tongdoanhthutheongay();
-                $tonghangban=tonghangdaban();
-                include "./thongke/thongkepage.php";
-                break;
-            case "showbill":
-                $list_of_bills=loadbill();
-                include "./bill/showbill.php";
+        case "thongkepage":
+            checkAdminRole();
+            $doanhthu = tongdoanhthutheongay();
+            $tonghangban = tonghangdaban();
+            include "./thongke/thongkepage.php";
+            break;
+        case "showbill":
+            checkAdminRole();
+            $list_of_bills = loadbill();
+            include "./bill/showbill.php";
+            break;
+        case "updatebill":
+            checkAdminRole(); // Kiểm tra quyền Admin
+            if (isset($_POST['idbill']) && isset($_POST['status'])) {
+                $idbill = $_POST['idbill'];
+                $status = $_POST['status'];
+                // Cập nhật trạng thái của hóa đơn
+                $sql = "UPDATE bill SET bill_status = ? WHERE idbill = ?";
+                pdo_execute($sql, $status, $idbill);
+                echo "Cập nhật trạng thái thành công";
+            } else {
+                echo "Thông tin không hợp lệ";
+            }
+            exit;
+            break;
+        case "billct":
+        case "mybillct":
+            if (isset($_GET['idbill'])) {
+                $idbill = $_GET['idbill'];
+            }
+            $listbilluser = loadone_bill_user($idbill);
+            $listcartuser = loadall_cart_user($idbill);
+            include "./bill/billct.php";
             break;
         case "exit":
             session_unset();
@@ -251,4 +321,3 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 }
 
 include "layout/footer.php";
-?>  

@@ -9,7 +9,7 @@ function loadall_comment(){
     return $result;
 }
 function loadall_comment_by_product_id($product_id){
-    $sql = "SELECT c.cmt_id, a.acc_name, m.product_name, c.content, c.date
+    $sql = "SELECT c.cmt_id, a.acc_name, m.product_name, c.content, c.date,a.acc_id
             FROM comment c
             JOIN account a ON c.acc_id = a.acc_id
             JOIN product m ON c.product_id = m.product_id

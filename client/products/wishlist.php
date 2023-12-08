@@ -1,42 +1,11 @@
 <div class="product-area">
     <div class="container">
         <div class="section-title text-center">
-            <h2>Mua ngay thôi nào!</h2>
+            <h2>Sản phẩm yêu thích của bạn</h2>
         </div>
-        <div class="product-tab-list nav pt-30 pb-55 text-center">
-            <a href="#product-1" data-bs-toggle="tab" >
-                <h4>Sản phẩm bán chạy</h4>
-            </a>
-            <a class="active" href="#product-2" data-bs-toggle="tab">
-                <h4> Sản phẩm giảm giá  </h4>
-            </a>
-            <a href="#product-3" data-bs-toggle="tab">
-                <h4>Mặt hàng mới</h4>
-            </a>
-        </div>
+        
         <div class="tab-content jump">
-            <div class="tab-pane" id="product-1">
-                <div class="row">
-                </div>
-            </div>
-                <form action="index.php?act=sanpham" method="POST" enctype="multipart/form-data">
-                    <div class="row2 mb10 formds_loai">
-
-                        <input type="text" name="kyw" class="search-input" placeholder="Nhập sản phẩm cần tìm..." style=" margin: 0 0 17px 750px; ">
-                        <select name="iddm" class="search-input">
-                            <option value="0">tất cả</option>
-                            <?php
-                            foreach ($tendm as $danhmuc) {
-                                extract($danhmuc);
-                                echo ' <option value="' . $genre_id . '">' . $genre_name . '</option>';
-                            }
-                            ?>
-                        </select>
-
-                        <input class="search-btn" type="submit" name="listok" value="Tìm kiếm">
-                </form>
-
-            <div class="tab-pane active" id="product-2">
+            <div class="tab-pane active mt-5" id="product-2">
                 <div class="row">
                 <?php
                                      $i=0;
@@ -45,7 +14,7 @@
                                          extract($sp);
                                          $hinh= $img_path.$product_img;
                                          $link="index.php?act=sanphamct&idsp=$product_id";
-                                         $wistlist="index.php?act=addwishlist";
+                                         $wistlist="index.php?act=addwishlistidsp=$product_id";
                                         //  if(($i==2)||($i==5)||($i==8)){
                                         //      $mr="";
                                         //  }else{

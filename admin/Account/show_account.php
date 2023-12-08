@@ -19,6 +19,7 @@
                     <th>Vai trò</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
+                    <th>Chặn</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,14 @@
                     extract($account);
                     $suatk = "index.php?act=updateaccount&acc_id=" . $acc_id;
                     $xoatk = "index.php?act=xoaaccount&acc_id=" . $acc_id;
+                    if ($role == 4) {
+                        $text = "Bỏ chặn";
+                        $nutblock = "index.php?act=unblock&acc_id=".$acc_id; 
+                    } else {
+                        $text = "Chặn";
+                        $nutblock = "index.php?act=block&acc_id=".$acc_id;
+                    }
+                
                     echo '<tr>                     
                                 <td>' . $acc_name . '</td>           
                                 <td>' . $acc_user . '</td>
@@ -40,6 +49,9 @@
                                 </td>
                                 <td>
                                     <a href="' . $xoatk . '"><input type="button" class="submit-btn" value="Xóa"></a>
+                                </td>
+                                <td>
+                                    <a href="' . $nutblock . '"><input type="button" class="submit-btn" value="' . $text . '" style="width:88px"></a>
                                 </td>
                             </tr>';
                 }
