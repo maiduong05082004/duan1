@@ -121,6 +121,9 @@ tr{
   font-family: "Times New Roman", sans-serif;
   font-size: 17px;
 }
+input{
+  font-family: "Times New Roman", sans-serif;
+}
 h1 {
   font-size: 36px;
   line-height: 42px;
