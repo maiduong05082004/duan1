@@ -8,4 +8,9 @@ function load_binhluan($idsp)
     $result = pdo_query($sql);
     return $result;
 }
+function check_cart($acc_id) {
+    $sql = "SELECT COUNT(*) FROM bill WHERE acc_id = ?";
+    $count = pdo_query_one($sql, $acc_id);
+    return $count > 0;
+}
 ?>

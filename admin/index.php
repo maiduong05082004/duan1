@@ -267,7 +267,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $listdanhmuc = loadall_danhmuc();
             $listsanpham = loadall_product($kyw, $iddm);
 
-            include "sanpham/list.php";
+            include "product/show_product.php";
+        break;
         case "home":
             include "./layout/home.php";
             break;
@@ -294,6 +295,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 // Cập nhật trạng thái của hóa đơn
                 $sql = "UPDATE bill SET bill_status = ? WHERE idbill = ?";
                 pdo_execute($sql, $status, $idbill);
+                if ($status == 3) {
+                    reduceProductQuantityForBill($idbill);
+                }
                 echo "Cập nhật trạng thái thành công";
             } else {
                 echo "Thông tin không hợp lệ";

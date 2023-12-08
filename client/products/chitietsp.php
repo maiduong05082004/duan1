@@ -1,3 +1,9 @@
+<?php
+$acc_name = ""; // Khởi tạo biến acc_name
+if (isset($_SESSION['user'])) {
+    $acc_name = $_SESSION['user']['acc_name']; // Lấy tên người dùng từ session
+}
+?>
 <div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
     <div class="container">
         <div class="breadcrumb-content text-center">
@@ -46,7 +52,7 @@
                     <p>' . $product_content . '</p>
                     <div class="pro-details-list">
                         <ul>
-                            <li>- Số lượng sản phẩm còn:'.$product_quantity.'</li>
+                            <li>- Số lượng sản phẩm còn:' . $product_quantity . '</li>
                             <li></li>
                             <li></li>
                         </ul>
@@ -54,7 +60,7 @@
                     <form action="index.php?act=addtocart" method="post">
                         <div class="pro-details-quality">
                             <div class="cart-plus-minus">
-                            <input class="cart-plus-minus-box" type="number" name="quantity" value="1" min="1" max="'.$product_quantity.'" >
+                            <input class="cart-plus-minus-box" type="number" name="quantity" value="1" min="1" max="' . $product_quantity . '" >
                             </div>
                             <div class="pro-details-cart btn-hover">
                                 <a href="#" style="line-height: 0;padding:0;margin-left: 20px;">
@@ -62,10 +68,10 @@
                                 </a>
                             </div>
                         </div>
-                        <input type="hidden" name="id" value="'.$product_id.'">
-                        <input type="hidden" name="name" value="'.$product_name.'">
-                        <input type="hidden" name="img" value="'.$product_img.'">
-                        <input type="hidden" name="price" value="'.$product_price.'">
+                        <input type="hidden" name="id" value="' . $product_id . '">
+                        <input type="hidden" name="name" value="' . $product_name . '">
+                        <input type="hidden" name="img" value="' . $product_img . '">
+                        <input type="hidden" name="price" value="' . $product_price . '">
                     </form>
                     <div class="pro-details-social">
                         <ul>
@@ -78,7 +84,7 @@
                     </div>
                 </div>
             </div>';
-            
+
             ?>
 
         </div>
@@ -95,7 +101,7 @@
             </div>
             <div class="tab-content description-review-bottom">
                 <div id="des-details2" class="tab-pane active">
-                <div class="row">
+                    <div class="row">
                         <div class="col-lg-7">
                             <!-- fix -->
                             <div class="review-wrapper">
@@ -150,34 +156,34 @@
                             </div>
                             <!-- end -->
                             <?php
-                            $i=0;
-                            $img='<img src="assets/img/testimonial/1.jpg" alt="" width="88" height="99">';
-                            foreach($listbinhluan as $binhluan){
-                                if($i==0){
-                                    $img='<img src="upload/anhuser1.jpg" alt="" width="88" height="99">';
-                                }elseif($i==1){
-                                    $img='<img src="upload/anhuser2.jpg" alt="" width="88" height="99">';
-                                }elseif($i==2){
-                                    $img='<img src="upload/anhuser3.jpg" alt="" width="88" height="99">';
-                                }elseif($i==3){
-                                    $img='<img src="upload/anhuser4.jpg" alt="" width="88" height="99">';
-                                }elseif($i==4){
-                                    $i=0;
-                                    $img='<img src="upload/anhuser.jpg" alt="" width="88" height="99">';
-                                }else{
-                                    $img='<img src="jpg" alt="ảnh lỗi">';
+                            $i = 0;
+                            $img = '<img src="assets/img/testimonial/1.jpg" alt="" width="88" height="99">';
+                            foreach ($listbinhluan as $binhluan) {
+                                if ($i == 0) {
+                                    $img = '<img src="upload/anhuser1.jpg" alt="" width="88" height="99">';
+                                } elseif ($i == 1) {
+                                    $img = '<img src="upload/anhuser2.jpg" alt="" width="88" height="99">';
+                                } elseif ($i == 2) {
+                                    $img = '<img src="upload/anhuser3.jpg" alt="" width="88" height="99">';
+                                } elseif ($i == 3) {
+                                    $img = '<img src="upload/anhuser4.jpg" alt="" width="88" height="99">';
+                                } elseif ($i == 4) {
+                                    $i = 0;
+                                    $img = '<img src="upload/anhuser.jpg" alt="" width="88" height="99">';
+                                } else {
+                                    $img = '<img src="jpg" alt="ảnh lỗi">';
                                 }
                                 extract($binhluan);
                                 echo '<div class="review-wrapper">
                                         <div class="single-review">
                                             <div class="review-img">
-                                                '.$img.'
+                                                ' . $img . '
                                             </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
                                                         <div class="review-name">
-                                                            <h4>'.$acc_name.'</h4>
+                                                            <h4>' . $acc_name . '</h4>
                                                         </div>
                                                         <div class="review-rating">
                                                             <i class="fa fa-star"></i>
@@ -189,12 +195,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="review-bottom">
-                                                    <p>'.$content.'.</p>
+                                                    <p>' . $content . '.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>';
-                                    $i++;
+                                $i++;
                             }
                             ?>
                         </div>
@@ -202,7 +208,8 @@
                             <div class="ratting-form-wrapper pl-50">
                                 <h3>Đánh giá sản phẩm</h3>
                                 <div class="ratting-form">
-                                    <form action="#">
+                                <form action="index.php?act=comment_add" method="post">
+                                <input type="hidden" name="product_id" value="<?= $product_id ?>">
                                         <div class="star-box">
                                             <span>Đánh giá của bạn:</span>
                                             <div class="ratting-star">
@@ -216,24 +223,29 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="rating-form-style mb-10">
-                                                    <p style="color:#767676">Tài khoản: Dương</p>
+                                                    <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']['acc_name'])) : ?>
+                                                        <p style="color:#767676">Tài khoản: <?= htmlspecialchars($_SESSION['user']['acc_name']) ?></p>
+                                                        <div class="col-md-12">
+                                                            <div class="rating-form-style form-submit">
+                                                                <textarea name="content" placeholder="Tin nhắn" style="     width: 350px; "></textarea>
+                                                                <input type="submit" value="Bình luận">
+                                                            </div>
+                                                        </div>
+                                                    <?php else : ?>
+                                                        <p style="color:#767676">Bạn cần <a href="index.php?act=login">đăng nhập</a> để đánh giá.</p>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
-         
-                                            <div class="col-md-12">
-                                                <div class="rating-form-style form-submit">
-                                                    <textarea name="Your Review" placeholder="Tin nhắn"></textarea>
-                                                    <input type="submit" value="Bình luận">
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -261,24 +273,24 @@
   <!-- ... other product cards ... -->
 </div>
 </a>';
-}
-?>
-</div>
-<script>
-document.getElementById('add-to-cart-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    fetch('index.php?act=addtocart', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.querySelector('.count-style').textContent = data.cartCount;
         }
-    })
-    .catch(error => console.error('Error:', error));
-});
-</script>
+        ?>
+    </div>
+    <script>
+        document.getElementById('add-to-cart-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('index.php?act=addtocart', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.querySelector('.count-style').textContent = data.cartCount;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>

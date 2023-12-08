@@ -54,7 +54,7 @@ function update_sanpham($id,$name,$price,$hinh,$content,$soluong,$view,$genre_id
     if($hinh!="")
         $sql="update product set genre_id='".$genre_id."',product_name ='".$name."',product_price='".$price."',product_content='".$content."',product_img='".$hinh."',product_view='".$view."',product_quantity='".$soluong."' where product_id=".$id;
     else
-        $sql="update product set genre_id='".$genre_id."',product_name ='".$name."',roduct_price='".$price."',product_content ='".$content."',product_quantity='".$soluong."' where product_id=".$id;
+        $sql="update product set genre_id='".$genre_id."',product_name ='".$name."',product_price='".$price."',product_content ='".$content."',product_quantity='".$soluong."' where product_id=".$id;
     pdo_execute($sql);
 }
 function loadsp_cungLoai($id,$iddm){

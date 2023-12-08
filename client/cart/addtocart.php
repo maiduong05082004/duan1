@@ -1,3 +1,16 @@
+<script>
+function updateTotal() {
+    var total = 0;
+    document.querySelectorAll('input[type="checkbox"][name="selected_items[]"]:checked').forEach(function(checkbox) {
+        var productId = checkbox.value;
+        var quantityInput = document.querySelector('input[name="quantity[' + productId + ']"]');
+        var price = parseFloat(quantityInput.dataset.price);
+        var quantity = parseInt(quantityInput.value);
+        total += price * quantity;
+    });
+    document.getElementById('total').textContent = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total);
+}
+</script>
 <form method="post" action="index.php?act=bill" id="cartForm">
   <div class="row mb" style="     text-align: center;width: 1210px;margin: 0 auto; ">
     <div class="boxtrai mr">
@@ -35,12 +48,12 @@
                 $formatted_price = number_format($item['price'], 0, ',', '.') . '₫';
                 $formatted_total = number_format($ttien, 0, ',', '.') . '₫';
                 echo '<tr>
-                        <td><input type="checkbox" name="selected_items[]" value="' . $id . '"></td>
+                        <td><input type="checkbox" name="selected_items[]" value="' . $id . '"  onclick="updateTotal()"></td>
                         <td><img src="' . $hinh . '" alt="" height="80px"></td>
                         <td>' . $item['name'] . '</td>
                         <td>' . $formatted_price . '</td>
                         <td>
-                            <input type="number" name="quantity[' . $id . ']" value="' . $item['soluong'] . '" min="1" class="form-control quantity-field" style="     width: 100px;     margin-left: 24px; ">
+                            <input type="number" name="quantity[' . $id . ']" value="' . $item['soluong'] . '" min="1" class="form-control quantity-field" data-price="' . $item['price'] . '" style="     width: 100px;     margin-left: 24px; ">
                         </td>
                         <td>' . $formatted_total . '</td>
                         <td>' . $xoasp . '</td>
@@ -49,8 +62,8 @@
             $formatted_tong = number_format($tong, 0, ',', '.') . '₫';
             ?>
             <tr>
-                <td colspan="4"><h3>Tổng đơn hàng</h3></td>
-                <td><h3><?= $formatted_tong ?></h3></td>
+                <td colspan="4"><h3>Tổng đơn hàng:</h3></td>
+                <td><h3 id="total">0₫</h3></td>
             </tr>
         </table>
     </div>
@@ -61,7 +74,7 @@
 <button type="submit" onclick="updateAction('updatecart')" name="updatecart" value="updatecart" style="color: #fff; background-color: #6c757d; border-color: #6c757d; border: 1px solid; margin: 20px 0; padding: 10px; border-radius: 5px; display: block; width: 173px; margin: 0 auto;">Cập nhật giỏ hàng</button>
   <div class="row mb bill" style="display: flex;margin: 0 auto;justify-content: center; ">
     <a href="index.php?act=bill" style="width: 185px; ">
-      <input type="submit" onclick="updateAction('bill')" value="Tiếp tục thanh toán" style="color: #fff;background-color: #6c757d;border-color: #6c757d;border: 1px solid;margin: 20px 0;padding: 10px;border-radius: 5px;">
+      <input type="submit" onclick="updateAction('bill')" value="Tiếp tục thanh toán" style="color: #fff;background-color: #6c757d;border-color: #6c757d;border: 1px solid;margin: 20px 0;padding: 10px;border-radius: 5px; width: 176px;">
     </a>
     <a href="index.php?act=delcart" style="width: 185px;">
       <input type="button" value="Xóa toàn bộ sản phẩm" style="width: 184px;color: #fff;background-color: #6c757d;border-color: #6c757d;border: 1px solid;margin: 20px 0;padding: 10px;border-radius: 5px;">

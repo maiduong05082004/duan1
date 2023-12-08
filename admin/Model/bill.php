@@ -28,4 +28,17 @@ function loadall_cart_user($idbill){
     $listbill=pdo_query($sql);    
     return $listbill;
 }
+function reduceProductQuantityForBill($billId) {
+    // Lấy danh sách sản phẩm trong đơn hàng
+    $sql = "SELECT product_id, product_quantity FROM cart WHERE idbill = ?";
+    $products = pdo_query($sql, $billId);
+
+    // Giảm số lượng cho mỗi sản phẩm
+    foreach ($products as $product) {
+        $productId = $product['product_id'];
+        $quantitySold = $product['product_quantity'];
+        $sqlUpdate = "UPDATE product SET product_quantity = product_quantity - ? WHERE product_id = ?";
+        pdo_execute($sqlUpdate, $quantitySold, $productId);
+    }
+}
 ?>
