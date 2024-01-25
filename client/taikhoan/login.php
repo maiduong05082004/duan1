@@ -1,17 +1,17 @@
 <div class="login-form">
-<div class="modal-overlay" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.7);display: flex;justify-content: center;align-items: center;    z-index: 1;">
-        <div class="register-modal" style="width: 400px;background: #fff;    padding: 20px 20px 20px 37px;border-radius: 10px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <span class="close-modal" style="float: right;font-size: 1.2em;cursor: pointer;">&times;</span>
-            <h2 style=" text-align: center;margin-bottom: 20px;color: #333;">Đăng nhập</h2>
+<div class="modal-overlay">
+        <div class="register-modal">
+            <span class="close-modal">&times;</span>
+            <h2>Đăng nhập</h2>
             <form action="index.php?act=login" method="post" enctype="multipart/form-data">
-                <input type="text" name="nameaccount" placeholder="Tên đăng nhập" required style="width: calc(100% - 20px); padding: 10px;margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                <input type="password" name="password" placeholder="Mật khẩu" required style="width: calc(100% - 20px);padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                <input type="submit" value="Đăng nhập" name="loginaccount" style="background-color: #48434c;color: #fff;     width: 324px;     border-radius: 9px;     text-align: center;">
+                <input type="text" id="login-type" name="nameaccount" placeholder="Tên đăng nhập" required>
+                <input type="password" id="login-type" name="password" placeholder="Mật khẩu" required>
+                <input type="submit" id="login-submit" value="Đăng nhập" name="loginaccount">
                 <?php
                 if(isset($thongbao)&&($thongbao!=""))echo $thongbao;
             ?>
             </form>
-            <a href="index.php?act=register"  style="color: #007bff;display: block;text-align: center;margin-top: 15px;">Chưa có tài khoản? Đăng ký ngay thôi nào </a>
+            <a href="index.php?act=register">Chưa có tài khoản? Đăng ký ngay thôi nào</a>
         </div>
     </div>
     </form>

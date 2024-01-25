@@ -29,7 +29,7 @@
                         <nav>
                             <ul>
                                 <li><a href="index.php">Trang chủ </a></li>
-                                <li><a href="shop.html"> Laptop <i class="fa fa-angle-down"></i> </a>
+                                <li><a href="index.php"> Laptop <i class="fa fa-angle-down"></i> </a>
                                     <ul class="mega-menu">
                                         <li>
                                             <ul>
@@ -37,7 +37,7 @@
                                                     <?php
                                                     foreach ($dsdm as $dm) {
                                                         extract($dm);
-                                                        $linkdm = "index.php?act=sanpham&&iddm=" . $genre_id;
+                                                        $linkdm = "index.php?act=sanpham&iddm=" . $genre_id;
                                                         echo '<li class="mega-menu-title"><a href="' . $linkdm . '">' . $genre_name . '</a></li>';
                                                     }
                                                     ?>

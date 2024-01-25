@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" >
     <form class="needs-validation" name="fromthanhtoan" method="post" action="index.php?act=billcomfim">
         <div class="breadcrumb-area pt-35 pb-35 bg-gray-3 mb-5">
             <div class="container">

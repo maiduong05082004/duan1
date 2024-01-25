@@ -19,18 +19,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
 
             break;
-        case 'sanpham':
-            if (isset($_POST['listok']) && ($_POST['listok'] != 0)) {
-                $kyw = $_POST['kyw'];
-                $iddm = $_POST['iddm'];
-            } else {
-                $kyw = "";
-                $iddm = 0;
-            }
-            $dssp = loadall_product($kyw, $iddm);
-            $tendm = loadall_genre();
-            include 'client/products/sanpham.php';
-            break;
+            case 'sanpham':
+                // Lấy giá trị từ GET hoặc POST
+                $kyw = isset($_POST['kyw']) ? $_POST['kyw'] : "";
+                $iddm = isset($_GET['iddm']) ? $_GET['iddm'] : (isset($_POST['iddm']) ? $_POST['iddm'] : 0);
+            
+                // Lấy danh sách sản phẩm dựa trên từ khoá tìm kiếm và ID danh mục
+                $dssp = loadall_product($kyw, $iddm);
+                $tendm = loadall_genre();
+            
+                // Include trang hiển thị sản phẩm
+                include 'client/products/sanpham.php';
+                break;
+            
         case 'wishlist':
             if (isset($_SESSION['user'])) {
                 $iduser = $_SESSION['user']['acc_id'];
@@ -69,7 +70,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
         case "register":
             if (isset($_POST['addaccount']) && ($_POST['addaccount'])) {
-                $user = $_POST['nam'] ?? '';
+                $user = $_POST['username'] ?? '';
                 $password = $_POST['password'] ?? '';
                 $confirm_password = $_POST['confirm_password'] ?? '';
                 $email = $_POST['email'] ?? '';

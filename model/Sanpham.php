@@ -18,19 +18,17 @@
     }
     function loadall_product($kyw = "", $iddm = 0) {
         $sql = "SELECT * FROM product WHERE 1";
-    
         if ($kyw != "") {
             $sql .= " AND product_name LIKE '%" . $kyw . "%'";
         }
         if ($iddm > 0) {
-            $sql .= " AND genre_id = '" . $iddm . "'";
+            $sql .= " AND genre_id = " . $iddm;
         }
-    
         $sql .= " ORDER BY product_id DESC";
-        $listsanpham = pdo_query($sql);
-    
-        return $listsanpham;
+        return pdo_query($sql);
     }
+    
+
     function load_ten_dm($iddm){
         if ($iddm>0) {
             $sql="select * from genre where genre_id=".$iddm;
