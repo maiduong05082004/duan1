@@ -17,5 +17,5 @@ include "client/layout/slide.php";
 include "addtocart.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh'); 
 include "layout.php";
-
+include "./model/lienHe.php";
 ?>

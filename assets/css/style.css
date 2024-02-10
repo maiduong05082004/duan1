@@ -15826,3 +15826,41 @@ h3.cart-page-title {
     margin-bottom: 20px;
   }
 }
+.contact-form-lienHe {
+  background: #fff;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+.contact-form-lienHe h2 {
+  margin-bottom: 15px;
+}
+.contact-form-lienHe label {
+  display: block;
+  margin-bottom: 5px;
+}
+.contact-form-lienHe input[type="text"],
+.contact-form-lienHe input[type="email"],
+.contact-form-lienHe textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+}
+.contact-form-lienHe button, .contact-form-lienHe input[type="submit"] {
+  background: #5D5C61; /* Màu nút submit giống header */
+  color: #fff;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.contact-form-lienHe button:hover, .contact-form input[type="submit"]:hover {
+  background: #333;
+  transition: background 0.3s ease;
+}
+.container-lienHe {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}

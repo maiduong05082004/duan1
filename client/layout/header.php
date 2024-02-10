@@ -56,7 +56,7 @@
                                 <li><a>Phụ kiện</a></li>
 
                                 <li><a href="about.html">Giới thiệu</a></li>
-                                <li><a href="contact.html">Liên hệ</a></li>
+                                <li><a href="index.php?act=lienHe">Liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>

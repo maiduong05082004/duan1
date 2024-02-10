@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ - LAPTECH</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ECEBFF; /* Màu nền tương tự trang chính */
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+    }
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+    header {
+        background: #5D5C61; /* Màu nền cho header */
+        color: #fff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #ECEBFF 3px solid;
+    }
+    header a {
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+    header ul {
+        padding: 0;
+        list-style: none;
+    }
+    header li {
+        display: inline;
+        margin: 0 20px;
+    }
+    header #branding {
+        float: left;
+    }
+    header #branding h1 {
+        margin: 0;
+    }
+    header nav {
+        float: right;
+        margin-top: 10px;
+    }
+    header .highlight, header .current a {
+        color: #ECEBFF;
+        font-weight: bold;
+    }
+    header a:hover {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .contact-form {
+        background: #fff;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 5px;
+    }
+    .contact-form h2 {
+        margin-bottom: 15px;
+    }
+    .contact-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+    }
+    .contact-form button, .contact-form input[type="submit"] {
+        background: #5D5C61; /* Màu nút submit giống header */
+        color: #fff;
+        padding: 10px 15px;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .contact-form button:hover, .contact-form input[type="submit"]:hover {
+        background: #333;
+        transition: background 0.3s ease;
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1>LAPTECH</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="products.html">Laptop</a></li>
+                <li class="current"><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="contact-form">
+        <h2>Liên hệ với chúng tôi</h2>
+        <form action="submit_form.php" method="post">
+            <label for="name">Tên của bạn:</label>
+            <input type="text" id="name" name="name" placeholder="Nhập tên của bạn">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Nhập email của bạn">
+            
+            <label for="message">Tin nhắn:</label>
+            <textarea id="message" name="message" placeholder="Nội dung tin nhắn"></textarea>
+            
+            <input type="submit" value="Gửi tin nhắn">
+        </form>
+    </div>
+</div>

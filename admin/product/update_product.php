@@ -1,6 +1,7 @@
 <?php
 if (is_array($sanpham)) {
     extract($sanpham);
+
 }
 $hinhpart = "../upload/" . $product_img;
 if (is_file($hinhpart)) {
@@ -38,7 +39,7 @@ if (is_file($hinhpart)) {
                     <div class="input-group-add-2">
                         <div class="left-box">
                             <div class="email">mô tả</div>
-                            <textarea id="phone" name="mota" rows="5" placeholder="nhập mô tả sản phẩm"></textarea>
+                            <textarea id="phone" name="mota" rows="5"><?= $product_content ?></textarea>
                         </div>
                         <div class="right-box" style="margin-bottom: 18px; ">
                             <div class="phone">hình</div>

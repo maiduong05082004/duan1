@@ -1,3 +1,4 @@
+
 <?php
 include "client/controllers/user.php";
 include "./model/payment.php";
@@ -7,6 +8,18 @@ if (!isset($_SESSION['mycart'])) {
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
+        case 'lienHe':
+            include './client/lienHe/lienhe.php';
+            break;
+        case 'submit_form_lienHe':
+            if (isset($_POST['submit_lienHe']) && ($_POST['submit_lienHe'])) {
+            $contract_name=$_POST['name'];
+            $contract_email=$_POST['email'];
+            $contract_content=$_POST['content'];
+            insert_content_lienHe($contract_name,$contract_email,$contract_content);
+            $thongbao = "Đã gửi tin thành công! Chúng tôi sẽ liên lạc lại với bạn trong 24h tới";
+        }
+                break;
         case 'sanphamct':
             if (isset($_GET['idsp']) && ($_GET['idsp'] > 0)) {
                 $onesp = loadone_sanpham($_GET['idsp']);
