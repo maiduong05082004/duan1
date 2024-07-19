@@ -19,10 +19,9 @@
                 <div class="row">
                 </div>
             </div>
-            <form action="index.php?act=sanpham" method="POST" enctype="multipart/form-data">
-                <div class="row2 mb10 formds_loai">
-
-                    <input type="text" name="kyw" class="search-input" placeholder="Nhập sản phẩm cần tìm..." style=" margin: 0 0 17px 750px; ">
+            <form action="index.php?act=sanpham" method="POST" enctype="multipart/form-data" class="d-none d-md-flex justify-content-end">
+                <div class="row2 mb10 formds_loai mb-3">
+                    <input type="text" name="kyw" class="search-input" placeholder="Nhập sản phẩm cần tìm...">
                     <select name="iddm" class="search-input">
                         <option value="0">tất cả</option>
                         <?php
@@ -34,6 +33,7 @@
                     </select>
 
                     <input class="search-btn" type="submit" name="listok" value="Tìm kiếm">
+                </div>
             </form>
 
             <div class="tab-pane active" id="product-2">

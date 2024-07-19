@@ -108,7 +108,7 @@
                         <label class="custom-control-label" for="httt-1">Thanh toán khi nhận hàng</label>
                     </div>                    
                     <div class="custom-control custom-radio">
-                        <input id="httt-2" name="pttt" type="radio" class="custom-control-input" required="" value="2" style="     height: auto;     width: auto; ">
+                        <input id="httt-2" name="pttt" type="radio" class="custom-control-input" required="" value="2"  style="     height: auto;     width: auto; ">
                         <label class="custom-control-label" for="httt-2">Chuyển khoản ngân hàng(đang bảo trì)</label>
                     </div>
                 </div>

@@ -117,7 +117,7 @@
                         }
                         ?>
                         <div class="same-style header-wishlist">
-                            <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                            <a href="" onclick="alert('Đang phát triển')"><i class="pe-7s-like"></i></a>
                         </div>
                         <?php
                         $soluongtong = 0;
