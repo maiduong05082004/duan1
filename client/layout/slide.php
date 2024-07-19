@@ -13,9 +13,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6" style="     margin-top: 37px; ">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6" style="     margin-top: 3%; ">
                             <div class="slider-single-img slider-animated-1">
-                                <img class="animated" src="assets/img/slider/single-slide-1.png" alt="" style="    margin: 0 33px 76px; ">
+                                <img class="animated" src="assets/img/slider/single-slide-1.png" alt="" style="    margin: 0 5% 11%; ">
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="single-slider slider-height-1 bg-purple">
                 <div class="container">
-                    <div class="row" style="     margin: -70px -80px 101px -73px; ">
+                    <div class="row" style="     margin: 0px -7% 9% -7%; ">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
                             <div class="slider-content slider-animated-1" style="padding: 0px;">
                                 <h3 class="animated">Sản phẩm HOT</h3>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
                             <div class="slider-single-img slider-animated-1">
-                                <img class="animated" src="assets/img/slider/single-slide-hm1-2.png" alt="" style="width: 600px;height: 397px;margin-left: 101px;">
+                                <img class="animated" src="assets/img/slider/single-slide-hm1-2.png" alt="" style="width: 82%;margin-left: 14%;margin-top: 36%;">
                             </div>
                         </div>
                     </div>

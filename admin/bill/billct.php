@@ -1,4 +1,4 @@
-<div style="margin: 50px;">
+<div style="margin: 50px; width: 100%;">
     <h2>Danh Sách Hóa Đơn Chi Tiết</h2>
     <table class="table table-bordered table-striped">
         <thead>

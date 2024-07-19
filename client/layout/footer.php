@@ -4,25 +4,26 @@
 <section class="banner02" style="background-color: #eae2d8;">
     <div class="container-fluid">
         <div class="row align-items-center">
-            <div class="col-md-6" id="pading" style="     padding-left: 188px; ">
-                <div class="banner-content" style="text-align: center;padding: 32px;">
+            <div class="col-md-6" style="padding: 0 15px;">
+                <div class="banner-content" style="text-align: center; padding: 32px;">
                     <h1>Giảm giá 50%</h1>
                     <h4>Lenovo ThinkBook 14 G3 ACL R3 5300U (21A200RWVN)</h4>
                     <del>15.990.000₫</del>
                     <h4>7.990.000₫</h4>
-                    <div class="slider-btn btn-hover" style="margin-top: 34px; ">
-                        <a class="animated bo" href="index.php?act=sanphamct&idsp=20" style="     margin-top: 20px;     border: 1px solid;     padding: 8px; ">MUA NGAY</a>
+                    <div class="slider-btn btn-hover" style="margin-top: 20px;">
+                        <a class="animated bo" href="index.php?act=sanphamct&idsp=20" style="border: 1px solid; padding: 8px;">MUA NGAY</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="ban-img">
-                    <img src="upload/anh-trong-suot-3.png" alt="" style="width: 500px;height: 310px;margin: 54px;">
+                    <img src="upload/anh-trong-suot-3.png" alt="" style="max-width: 100%; height: auto; padding: 20px;">
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- Hết phần banner thứ 2 -->
 <div class="blog-area pb-55">
     <div class="container">
